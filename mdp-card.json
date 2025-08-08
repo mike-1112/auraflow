@@ -1,0 +1,21 @@
+{
+  "mood": 7,
+  "energy": 6,
+  "focus": 8,
+  "note": "checking visuals",
+  "shift": "compassion",
+  "practice": "List one thing you're carrying. Now say: I release what I can, and I'm gentle with what remains.",
+  "support": {
+    "root": 0.44,
+    "sacral": 0.33,
+    "solar_plexus": 0.555,
+    "heart": 0.35,
+    "throat": 0.31,
+    "third_eye": 0.495,
+    "crown": 0.48
+  },
+  "focusAreas": [
+    { "name": "Solar Plexus", "chakra": "solar_plexus" },
+    { "name": "Third Eye", "chakra": "third_eye" }
+  ]
+}
