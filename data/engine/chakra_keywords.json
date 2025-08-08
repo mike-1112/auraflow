@@ -1,0 +1,43 @@
+﻿{
+  "version": 1,
+  "notes": "Keyword hints for chakra scoring. Case-insensitive. Keep short, high-signal words.",
+  "root": {
+    "keywords": ["rent","mortgage","bills","debt","income","money","cash","paycheck","job","security","unsafe","unstable","home","housing","ground","survival","fear","panic"],
+    "somatic":  ["heavy","tight lower back","legs weak","shaky","unstable","falling","frozen"]
+  },
+  "sacral": {
+    "keywords": ["arousal","horny","turned on","sexual","sex","desire","sensual","pleasure","creative","playful","flow","stuck creatively","shame"],
+    "somatic":  ["butterflies","hips","pelvis","warm belly","tingle lower belly","liquid","wave","surge"]
+  },
+  "solar_plexus": {
+    "keywords": ["deadline","decision","control","power","will","agency","confidence","assert","lead","performance","presentation anxiety"],
+    "somatic":  ["knot in stomach","pit in stomach","tight belly","heat in core"]
+  },
+  "heart": {
+    "keywords": ["love","compassion","connection","kindness","tender","affection","friend","family","forgive","lonely","heartbroken","grief","empathy","warmth"],
+    "somatic":  ["warm chest","open chest","tight chest","ache in chest","heart area","tearful"]
+  },
+  "throat": {
+    "keywords": ["speak","voice","truth","honest","boundaries","conversation","call","present","pitch","expression","cant speak"],
+    "somatic":  ["tight throat","lump in throat","dry throat","jaw tight"]
+  },
+  "third_eye": {
+    "keywords": ["clarity","vision","insight","intuition","confused","foggy","overthinking","pattern","see","imagine","idea"],
+    "somatic":  ["brow","between eyes","head pressure","eyes tired","stare"]
+  },
+  "crown": {
+    "keywords": ["purpose","meaning","spiritual","prayer","meditate","awe","gratitude","transcendent","synchronicity"],
+    "somatic":  ["lightness","tingle scalp","top of head","crown","vast","expansive"]
+  },
+  "disambiguation": {
+    "physical_arousal_terms": ["arousal","horny","turned on","sexual","sex","desire","sensual","pleasure"],
+    "emotional_warmth_terms": ["love","tender","affection","compassion","connection","warmth"]
+  },
+  "weights": {
+    "keyword_hit": 0.35,
+    "somatic_hit": 0.25,
+    "money_root_bonus": 0.45,
+    "clarity_thirdeye_bonus": 0.35,
+    "physical_overrides_heart": true
+  }
+}

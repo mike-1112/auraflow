@@ -1,0 +1,58 @@
+﻿{
+  "motivation": {
+    "general": [
+      {"id":"mot_g1","text":"Close your eyes for 10 seconds. Picture the one win that would make today worth it. Now take one small step toward it."},
+      {"id":"mot_g2","text":"Youve done harder things. Breathe in courage, breathe out doubt. One decisive actionnow."}
+    ],
+    "chakra": {
+      "solar_plexus": [
+        {"id":"mot_sp1","text":"Sit tall. One deep breath into your belly. Say quietly: I choose to act. Then start the smallest step."}
+      ],
+      "crown": [
+        {"id":"mot_cr1","text":"Look slightly up. Remember why you started. Let purpose lift your chest. Begin with grace."}
+      ]
+    }
+  },
+  "love": {
+    "general": [
+      {"id":"love_g1","text":"Think of someone who loves you. Hold them in your mind for 15 seconds. Let that warmth fill your chest."},
+      {"id":"love_g2","text":"Send a silent blessing to someone youll meet today: May you feel seen and safe."}
+    ],
+    "chakra": {
+      "heart": [
+        {"id":"love_h1","text":"Hand over heart. Inhale for 4, hold 2, exhale 6. Whisper: I am open to giving and receiving love."}
+      ],
+      "throat": [
+        {"id":"love_t1","text":"Place a hand at your throat. Breathe gently. Imagine your words carrying kindness today."}
+      ]
+    }
+  },
+  "compassion": {
+    "general": [
+      {"id":"comp_g1","text":"Place a palm on your chest. Say: Its okay to be human. 3 long exhales. Tension leaves with each one."},
+      {"id":"comp_g2","text":"List one thing youre carrying. Now say: I release what I can, and Im gentle with what remains."}
+    ],
+    "chakra": {
+      "root": [
+        {"id":"comp_r1","text":"Feel your feet. Imagine roots down into the earth. On exhale, let the floor carry 10% of your weight."}
+      ],
+      "sacral": [
+        {"id":"comp_s1","text":"Roll your shoulders slowly. Imagine warm water around your hipssoftness, flow, forgiveness."}
+      ]
+    }
+  },
+  "grounded": {
+    "general": [
+      {"id":"grnd_g1","text":"Square your feet. Inhale 4, hold 2, exhale 6. Lengthen the exhale. Let shoulders drop 1cm."},
+      {"id":"grnd_g2","text":"Pick one priority. Set a 10-minute timer. Let the timer carry your focusnothing else matters."}
+    ],
+    "chakra": {
+      "third_eye": [
+        {"id":"grnd_te1","text":"Relax your eyes. Soften the space between your brows. See your next step clearly."}
+      ],
+      "root": [
+        {"id":"grnd_r1","text":"Feel the chair and floor. Imagine a gentle weight in your hipssteady, stable, here."}
+      ]
+    }
+  }
+}

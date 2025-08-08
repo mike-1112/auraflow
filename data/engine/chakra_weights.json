@@ -1,0 +1,21 @@
+﻿{
+  "features": ["mood","energy","focus","tag_anxious","tag_peace","tag_gratitude","tag_love","tag_stress"],
+  "weights": {
+    "root":        {"mood":0.20, "energy":0.50, "focus":0.00, "tag_anxious":0.60, "tag_stress":0.40},
+    "sacral":      {"mood":0.30, "energy":0.20, "focus":0.00, "tag_love":0.30, "tag_gratitude":0.20},
+    "solar_plexus":{"mood":0.05, "energy":0.40, "focus":0.35},
+    "heart":       {"mood":0.50, "energy":0.00, "focus":0.00, "tag_love":0.60, "tag_gratitude":0.50},
+    "throat":      {"mood":0.10, "energy":0.00, "focus":0.30},
+    "third_eye":   {"mood":0.05, "energy":0.10, "focus":0.50},
+    "crown":       {"mood":0.40, "energy":0.20, "focus":0.10, "tag_peace":0.40}
+  },
+  "labels": {
+    "root":"Root (Muladhara)",
+    "sacral":"Sacral (Svadhisthana)",
+    "solar_plexus":"Solar Plexus (Manipura)",
+    "heart":"Heart (Anahata)",
+    "throat":"Throat (Vishuddha)",
+    "third_eye":"Third Eye (Ajna)",
+    "crown":"Crown (Sahasrara)"
+  }
+}
