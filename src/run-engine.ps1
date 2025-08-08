@@ -289,15 +289,6 @@ New-Item -ItemType Directory -Force -Path (Resolve-RepoPath "logs")|Out-Null
 $stamp=Get-Date -Format "yyyy-MM-dd"
 $log=Resolve-RepoPath ("logs\engine-{0}.log" -f $stamp)
 ([pscustomobject]@{ts=(Get-Date).ToString("o");mood=$Mood;energy=$Energy;focus=$Focus;note=$Note;shift=$shift;content_id=$contentId;after=$After;chakra=($chakraNodes -join ",");tree=($treeNodes -join ",");usedWeights=([bool]$UseWeights)}|ConvertTo-Json -Compress)|Add-Content -Path $log
-# Auto-export Share Card for today (best-effort, non-blocking)
-try {
-  powershell -ExecutionPolicy Bypass -File (Join-Path (Get-Location) 'src\export-card.ps1') -Date (Get-Date -Format 'yyyy-MM-dd') | Out-Null
-} catch { }
-
-# Auto-export Share Card for today (best-effort)
-try {
-  powershell -ExecutionPolicy Bypass -File (Join-Path (Get-Location) 'src\export-card.ps1') -Date (Get-Date -Format 'yyyy-MM-dd') | Out-Null
-} catch { }
 # Auto-export Share Card for today (best-effort)
 try {
   powershell -ExecutionPolicy Bypass -File (Join-Path (Get-Location) 'src\export-card.ps1') -Date (Get-Date -Format 'yyyy-MM-dd') | Out-Null

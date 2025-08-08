@@ -1,0 +1,1486 @@
+﻿# AuraFlow snapshot  2025-08-08 18:52:20 +09:30
+# Root: C:/auraflow
+
+
+==== FILE: C:\auraflow\data\engine\chakra.json ====
+
+{
+  "map": {
+    "motivation": ["solar_plexus","crown"],
+    "love":       ["heart","throat"],
+    "compassion": ["root","heart","sacral"],
+    "grounded":   ["root","third_eye"]
+  },
+  "labels": {
+    "root":"Root (Muladhara)",
+    "sacral":"Sacral (Svadhisthana)",
+    "solar_plexus":"Solar Plexus (Manipura)",
+    "heart":"Heart (Anahata)",
+    "throat":"Throat (Vishuddha)",
+    "third_eye":"Third Eye (Ajna)",
+    "crown":"Crown (Sahasrara)"
+  }
+}
+
+
+
+==== FILE: C:\auraflow\data\engine\chakra_keywords.json ====
+
+{
+  "version": 1,
+  "notes": "Keyword hints for chakra scoring. Case-insensitive. Keep short, high-signal words.",
+  "root": {
+    "keywords": ["rent","mortgage","bills","debt","income","money","cash","paycheck","job","security","unsafe","unstable","home","housing","ground","survival","fear","panic"],
+    "somatic":  ["heavy","tight lower back","legs weak","shaky","unstable","falling","frozen"]
+  },
+  "sacral": {
+    "keywords": ["arousal","horny","turned on","sexual","sex","desire","sensual","pleasure","creative","playful","flow","stuck creatively","shame"],
+    "somatic":  ["butterflies","hips","pelvis","warm belly","tingle lower belly","liquid","wave","surge"]
+  },
+  "solar_plexus": {
+    "keywords": ["deadline","decision","control","power","will","agency","confidence","assert","lead","performance","presentation anxiety"],
+    "somatic":  ["knot in stomach","pit in stomach","tight belly","heat in core"]
+  },
+  "heart": {
+    "keywords": ["love","compassion","connection","kindness","tender","affection","friend","family","forgive","lonely","heartbroken","grief","empathy","warmth"],
+    "somatic":  ["warm chest","open chest","tight chest","ache in chest","heart area","tearful"]
+  },
+  "throat": {
+    "keywords": ["speak","voice","truth","honest","boundaries","conversation","call","present","pitch","expression","cant speak"],
+    "somatic":  ["tight throat","lump in throat","dry throat","jaw tight"]
+  },
+  "third_eye": {
+    "keywords": ["clarity","vision","insight","intuition","confused","foggy","overthinking","pattern","see","imagine","idea"],
+    "somatic":  ["brow","between eyes","head pressure","eyes tired","stare"]
+  },
+  "crown": {
+    "keywords": ["purpose","meaning","spiritual","prayer","meditate","awe","gratitude","transcendent","synchronicity"],
+    "somatic":  ["lightness","tingle scalp","top of head","crown","vast","expansive"]
+  },
+  "disambiguation": {
+    "physical_arousal_terms": ["arousal","horny","turned on","sexual","sex","desire","sensual","pleasure"],
+    "emotional_warmth_terms": ["love","tender","affection","compassion","connection","warmth"]
+  },
+  "weights": {
+    "keyword_hit": 0.35,
+    "somatic_hit": 0.25,
+    "money_root_bonus": 0.45,
+    "clarity_thirdeye_bonus": 0.35,
+    "physical_overrides_heart": true
+  }
+}
+
+
+
+==== FILE: C:\auraflow\data\engine\chakra_weights.json ====
+
+{
+  "features": ["mood","energy","focus","tag_anxious","tag_peace","tag_gratitude","tag_love","tag_stress"],
+  "weights": {
+    "root":        {"mood":0.20, "energy":0.50, "focus":0.00, "tag_anxious":0.60, "tag_stress":0.40},
+    "sacral":      {"mood":0.30, "energy":0.20, "focus":0.00, "tag_love":0.30, "tag_gratitude":0.20},
+    "solar_plexus":{"mood":0.05, "energy":0.40, "focus":0.35},
+    "heart":       {"mood":0.50, "energy":0.00, "focus":0.00, "tag_love":0.60, "tag_gratitude":0.50},
+    "throat":      {"mood":0.10, "energy":0.00, "focus":0.30},
+    "third_eye":   {"mood":0.05, "energy":0.10, "focus":0.50},
+    "crown":       {"mood":0.40, "energy":0.20, "focus":0.10, "tag_peace":0.40}
+  },
+  "labels": {
+    "root":"Root (Muladhara)",
+    "sacral":"Sacral (Svadhisthana)",
+    "solar_plexus":"Solar Plexus (Manipura)",
+    "heart":"Heart (Anahata)",
+    "throat":"Throat (Vishuddha)",
+    "third_eye":"Third Eye (Ajna)",
+    "crown":"Crown (Sahasrara)"
+  }
+}
+
+
+
+==== FILE: C:\auraflow\data\engine\content_packs.json ====
+
+{
+  "motivation": {
+    "general": [
+      {"id":"mot_g1","text":"Close your eyes for 10 seconds. Picture the one win that would make today worth it. Now take one small step toward it."},
+      {"id":"mot_g2","text":"Youve done harder things. Breathe in courage, breathe out doubt. One decisive actionnow."}
+    ],
+    "chakra": {
+      "solar_plexus": [
+        {"id":"mot_sp1","text":"Sit tall. One deep breath into your belly. Say quietly: I choose to act. Then start the smallest step."}
+      ],
+      "crown": [
+        {"id":"mot_cr1","text":"Look slightly up. Remember why you started. Let purpose lift your chest. Begin with grace."}
+      ]
+    }
+  },
+  "love": {
+    "general": [
+      {"id":"love_g1","text":"Think of someone who loves you. Hold them in your mind for 15 seconds. Let that warmth fill your chest."},
+      {"id":"love_g2","text":"Send a silent blessing to someone youll meet today: May you feel seen and safe."}
+    ],
+    "chakra": {
+      "heart": [
+        {"id":"love_h1","text":"Hand over heart. Inhale for 4, hold 2, exhale 6. Whisper: I am open to giving and receiving love."}
+      ],
+      "throat": [
+        {"id":"love_t1","text":"Place a hand at your throat. Breathe gently. Imagine your words carrying kindness today."}
+      ]
+    }
+  },
+  "compassion": {
+    "general": [
+      {"id":"comp_g1","text":"Place a palm on your chest. Say: Its okay to be human. 3 long exhales. Tension leaves with each one."},
+      {"id":"comp_g2","text":"List one thing youre carrying. Now say: I release what I can, and Im gentle with what remains."}
+    ],
+    "chakra": {
+      "root": [
+        {"id":"comp_r1","text":"Feel your feet. Imagine roots down into the earth. On exhale, let the floor carry 10% of your weight."}
+      ],
+      "sacral": [
+        {"id":"comp_s1","text":"Roll your shoulders slowly. Imagine warm water around your hipssoftness, flow, forgiveness."}
+      ]
+    }
+  },
+  "grounded": {
+    "general": [
+      {"id":"grnd_g1","text":"Square your feet. Inhale 4, hold 2, exhale 6. Lengthen the exhale. Let shoulders drop 1cm."},
+      {"id":"grnd_g2","text":"Pick one priority. Set a 10-minute timer. Let the timer carry your focusnothing else matters."}
+    ],
+    "chakra": {
+      "third_eye": [
+        {"id":"grnd_te1","text":"Relax your eyes. Soften the space between your brows. See your next step clearly."}
+      ],
+      "root": [
+        {"id":"grnd_r1","text":"Feel the chair and floor. Imagine a gentle weight in your hipssteady, stable, here."}
+      ]
+    }
+  }
+}
+
+
+
+==== FILE: C:\auraflow\data\engine\rules.json ====
+
+{
+  "rules": [
+    { "id": "low_low_low",  "when": { "mood":"low", "energy":"low", "focus":"low"  }, "shift":"motivation", "example":"20s visualization of overcoming past challenges" },
+    { "id": "low_low_high", "when": { "mood":"low", "energy":"low", "focus":"high" }, "shift":"compassion", "example":"Gentle reframing before using focus" },
+    { "id": "low_high_low", "when": { "mood":"low", "energy":"high","focus":"low"  }, "shift":"grounded",   "example":"Breath + posture reset to channel energy" },
+    { "id": "low_high_high","when": { "mood":"low", "energy":"high","focus":"high" }, "shift":"motivation", "example":"Channel this fire into one thing that matters" },
+    { "id": "high_low_low","when": { "mood":"high","energy":"low","focus":"low"     }, "shift":"love",       "example":"Gratitude micro-practice" },
+    { "id": "high_low_high","when": { "mood":"high","energy":"low","focus":"high"   }, "shift":"grounded",   "example":"Centering + light prioritization" },
+    { "id": "high_high_low","when": { "mood":"high","energy":"high","focus":"low"   }, "shift":"love",       "example":"Share a positive message before work" },
+    { "id": "high_high_high","when": { "mood":"high","energy":"high","focus":"high" }, "shift":"motivation", "example":"Quick action plan + commitment anchor" },
+    { "id": "anxious_any",  "when": { "mood":"anxious","energy":"any","focus":"any" }, "shift":"compassion", "example":"1-minute guided breathing + safety cue" },
+    { "id": "peace_any",    "when": { "mood":"peace","energy":"any","focus":"any"   }, "shift":"grounded",   "example":"Light gratitude + act with intention" }
+  ],
+  "buckets": {
+    "mood":   { "low":[0,4], "high":[7,10], "anxious":"tag", "peace":"tag" },
+    "energy": { "low":[0,4], "high":[7,10] },
+    "focus":  { "low":[0,4], "high":[7,10] }
+  },
+  "order": ["anxious_any","peace_any","low_low_low","low_low_high","low_high_low","low_high_high","high_low_low","high_low_high","high_high_low","high_high_high"]
+}
+
+
+
+==== FILE: C:\auraflow\data\engine\tree.json ====
+
+{
+  "map": {
+    "motivation": ["gevurah","keter"],
+    "love":       ["chesed","tiferet"],
+    "compassion": ["yesod","tiferet"],
+    "grounded":   ["malkuth","hod"]
+  },
+  "labels": {
+    "keter":"Keter (Crown / potential)",
+    "chokhmah":"Chokhmah",
+    "binah":"Binah",
+    "chesed":"Chesed (Kindness)",
+    "gevurah":"Gevurah (Discipline)",
+    "tiferet":"Tiferet (Balance)",
+    "netzach":"Netzach",
+    "hod":"Hod (Clarity)",
+    "yesod":"Yesod (Foundation)",
+    "malkuth":"Malkuth (Kingdom / physical)"
+  }
+}
+
+
+
+==== FILE: C:\auraflow\mdp-card.html ====
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>MDP Card</title>
+<style>
+  body {
+    background: #f5f7fa;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+  }
+  .card {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    padding: 20px;
+    max-width: 400px;
+    width: 100%;
+  }
+  .title {
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  .metric {
+    margin: 6px 0;
+  }
+  .practice {
+    background: #f0f4ff;
+    padding: 12px;
+    border-radius: 8px;
+    margin: 12px 0;
+    font-style: italic;
+  }
+  .support-list {
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="title">Morning State-Shift</div>
+  <div class="metric">Mood: 7</div>
+  <div class="metric">Energy: 6</div>
+  <div class="metric">Focus: 8</div>
+  <div class="metric"><b>Note:</b> checking visuals</div>
+  <div class="metric"><b>Shift:</b> compassion</div>
+  <div class="practice">List one thing you're carrying. Now say: I release what I can, and I'm gentle with what remains.</div>
+  <div class="metric"><b>Support Areas:</b></div>
+  <div class="support-list">
+    Root (Muladhara): 0.44<br>
+    Sacral (Svadhisthana): 0.33<br>
+    Solar Plexus (Manipura): 0.555<br>
+    Heart (Anahata): 0.35<br>
+    Throat (Vishuddha): 0.31<br>
+    Third Eye (Ajna): 0.495<br>
+    Crown (Sahasrara): 0.48
+  </div>
+  <div class="metric"><b>Focus Areas:</b> Solar Plexus, Third Eye</div>
+</div>
+</body>
+</html>
+
+
+
+==== FILE: C:\auraflow\mdp-card.json ====
+
+{
+  "mood": 7,
+  "energy": 6,
+  "focus": 8,
+  "note": "checking visuals",
+  "shift": "compassion",
+  "practice": "List one thing you're carrying. Now say: I release what I can, and I'm gentle with what remains.",
+  "support": {
+    "root": 0.44,
+    "sacral": 0.33,
+    "solar_plexus": 0.555,
+    "heart": 0.35,
+    "throat": 0.31,
+    "third_eye": 0.495,
+    "crown": 0.48
+  },
+  "focusAreas": [
+    { "name": "Solar Plexus", "chakra": "solar_plexus" },
+    { "name": "Third Eye", "chakra": "third_eye" }
+  ]
+}
+
+
+
+==== FILE: C:\auraflow\Run-AuraFlow.ps1 ====
+
+powershell -ExecutionPolicy Bypass -File .\src\run-engine.ps1 -Chakra -UseWeights
+
+
+
+==== FILE: C:\auraflow\src\export-card.ps1 ====
+
+param([string]$Date = (Get-Date -Format "yyyy-MM-dd"))
+
+$root = Get-Location
+$log  = Join-Path $root ("logs\engine-{0}.log" -f $Date)
+if (-not (Test-Path $log)) { throw "No log for $Date at $log" }
+
+$entry = Get-Content $log | Select-Object -Last 1 | ConvertFrom-Json
+if (-not $entry) { throw "No entries in $log" }
+
+function Normalize-Text([string]$text){
+  if (-not $text) { return "" }
+  $text = [regex]::Replace($text, '\p{Zs}', ' ')
+  $pair = [regex]::Matches($text,'(?<=\p{L})\s(?=\p{L})').Count
+  if($pair -ge 10){ $text = [regex]::Replace($text,'(?<=\p{L})\s(?=\p{L})','') }
+  $text = $text -replace '\s{2,}',' '
+  return $text.Trim()
+}
+
+$shift    = Normalize-Text $entry.shift
+$note     = Normalize-Text $entry.note
+$practice = Normalize-Text ($entry.sample ?? $entry.content_text)
+$mood     = [int]$entry.mood
+$energy   = [int]$entry.energy
+$focus    = [int]$entry.focus
+$chakras  = ($entry.chakra ?? "") -split "," | ForEach-Object { $_.Trim() } | Where-Object { $_ }
+
+$shiftNames = @{ grounded="Grounded"; compassion="Compassion"; clarity="Clarity"; courage="Courage"; release="Release" }
+$shiftTitle = ($shiftNames[$shift] ?? ($shift.Substring(0,1).ToUpper()+$shift.Substring(1)))
+
+$chakraLabels = @{
+  root="Root (Muladhara)"; sacral="Sacral (Svadhisthana)"; solar_plexus="Solar Plexus (Manipura)";
+  heart="Heart (Anahata)"; throat="Throat (Vishuddha)"; third_eye="Third Eye (Ajna)"; crown="Crown (Sahasrara)"
+}
+$chakraColors = @{
+  root="#E53935"; sacral="#FB8C00"; solar_plexus="#FDD835";
+  heart="#43A047"; throat="#1E88E5"; third_eye="#5E35B1"; crown="#8E24AA"
+}
+
+$theme = @{
+  grounded   = @{ bg1="#b9f5d0"; bg2="#effdf5"; accent="#2e7d32" }
+  compassion = @{ bg1="#ffddea"; bg2="#fff3f7"; accent="#ad1457" }
+  clarity    = @{ bg1="#daeeff"; bg2="#f3f9ff"; accent="#1565c0" }
+  courage    = @{ bg1="#fff1cc"; bg2="#fff8e1"; accent="#ef6c00" }
+  release    = @{ bg1="#efefef"; bg2="#fafafa"; accent="#424242" }
+}
+$tk = ($theme.Keys -contains $shift) ? $shift : "clarity"
+$bg1 = $theme[$tk].bg1; $bg2 = $theme[$tk].bg2; $accent = $theme[$tk].accent
+
+$chips = ""
+foreach($c in $chakras){
+  $lab = ($chakraLabels[$c] ?? $c)
+  $col = ($chakraColors[$c] ?? "#888")
+  $chips += "<span class='chip' style='--chip:$col'><span class='dot'></span>$lab</span>"
+}
+
+$outDir  = Join-Path $root "cards"
+New-Item -ItemType Directory -Force -Path $outDir | Out-Null
+$ts      = Get-Date -Format "yyyyMMdd-HHmmss"
+$outFile = Join-Path $outDir ("auraflow-card-{0}.html" -f $ts)
+
+@"
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AuraFlow  Morning Card</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg1:$bg1; --bg2:$bg2; --accent:$accent;
+    --ink:#0b1220; --muted:#6b7280; --panel:rgba(255,255,255,0.82); --stroke:rgba(255,255,255,0.50);
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; min-height:100vh; display:flex; align-items:center; justify-content:center;
+    font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial; color:var(--ink);
+    background: radial-gradient(1200px 600px at 20% 10%, var(--bg1), transparent 60%),
+                radial-gradient(1000px 600px at 80% 90%, var(--bg2), transparent 55%),
+                linear-gradient(160deg, #f8fafc 0%, #eef2f7 100%);
+    animation: floatBg 14s ease-in-out infinite alternate;
+    padding: 28px;
+  }
+  @keyframes floatBg { from{background-position:0 0,0 0,0 0} to{background-position:20px -20px,-30px 15px,0 0} }
+
+  .card{
+    backdrop-filter: blur(10px);
+    background: var(--panel);
+    border:1px solid var(--stroke);
+    border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(0,0,0,.12), 0 6px 18px rgba(0,0,0,.06);
+    width:min(880px, 96vw); padding:28px;
+    transform: perspective(1000px) translateZ(0);
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .card:hover{ transform: perspective(1000px) translateZ(6px); box-shadow: 0 24px 60px rgba(0,0,0,.16), 0 8px 22px rgba(0,0,0,.08) }
+
+  .header{ display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:8px }
+  .title{ font-weight:800; font-size:28px; letter-spacing:.2px }
+  .badge{ background:var(--accent); color:#fff; padding:6px 12px; border-radius:999px; font-weight:700; font-size:12px }
+  .sub{ color:var(--muted); font-size:13px; margin-bottom:18px }
+
+  .grid{ display:grid; grid-template-columns: 1.1fr .9fr; gap:18px }
+  @media (max-width: 860px){ .grid{ grid-template-columns: 1fr } }
+
+  .box{ background:rgba(255,255,255,.94); border:1px solid #e9edf2; border-radius:16px; padding:16px }
+
+  .gauges{ display:flex; gap:18px; flex-wrap:wrap }
+  .g{ display:grid; place-items:center; width:140px; aspect-ratio:1; position:relative }
+  .ring{ width:100%; height:100%; border-radius:50%;
+         background: conic-gradient(var(--accent) calc(var(--val)*1%), #e6edf5 0),
+                     radial-gradient(circle 52% at 50% 50%, #fff 68%, transparent 69%);
+         box-shadow: inset 0 2px 12px rgba(0,0,0,.08); }
+  .label{ position:absolute; text-align:center }
+  .label .k{ font-size:12px; color:var(--muted) }
+  .label .v{ font-weight:800; font-size:22px }
+
+  .chips{ display:flex; flex-wrap:wrap; gap:10px }
+  .chip{ display:inline-flex; align-items:center; gap:8px; background:#fff; border:1px solid #eef1f5; padding:6px 12px; border-radius:999px; font-size:12px }
+  .chip .dot{ width:8px; height:8px; border-radius:50%; background:var(--chip,#888) }
+
+  .practice{ margin-top:12px; background:linear-gradient(180deg,#fafcfe 0%,#f6f8fb 100%); border:1px dashed #e3e7ee; border-radius:12px; padding:14px 16px; line-height:1.55; font-size:16px }
+  .note{ background:#fafafa; border:1px solid #eee; border-radius:12px; padding:10px 12px; font-size:13px; color:#334155; margin-top:12px }
+
+  .support{ margin-top:14px; display:grid; grid-template-columns:repeat(2,1fr); gap:10px }
+  @media (max-width: 860px){ .support{ grid-template-columns:1fr } }
+  .row{ display:flex; align-items:center; gap:10px }
+  .row .k{ min-width:170px; color:#475569; font-size:12px }
+  .bar{ flex:1; height:8px; background:#eef2f7; border-radius:999px; overflow:hidden }
+  .fill{ height:100%; background:var(--accent); width:0% }
+
+  .footer{ margin-top:16px; color:#9aa3ad; font-size:12px; text-align:right }
+</style>
+
+<div class="card" id="card">
+  <div class="header">
+    <div class="title">Morning State</div>
+    <div class="badge">$shiftTitle</div>
+  </div>
+  <div class="sub">$([DateTime]::Parse($entry.ts).ToString("dddd, MMM d  h:mm tt"))</div>
+
+  <div class="grid">
+    <div class="box">
+      <div class="gauges">
+        <div class="g" style="--val:$([int]$mood*10)"><div class="ring"></div><div class="label"><div class="k">Mood</div><div class="v">$mood/10</div></div></div>
+        <div class="g" style="--val:$([int]$energy*10)"><div class="ring"></div><div class="label"><div class="k">Energy</div><div class="v">$energy/10</div></div></div>
+        <div class="g" style="--val:$([int]$focus*10)"><div class="ring"></div><div class="label"><div class="k">Focus</div><div class="v">$focus/10</div></div></div>
+      </div>
+
+      @(if ("$note" -ne "") { "<div class='note'><b>Note:</b> $note</div>" })
+      <div class="practice">$practice</div>
+    </div>
+
+    <div class="box">
+      <div style="font-weight:700; margin-bottom:8px">Chakra focus</div>
+      <div class="chips">$chips</div>
+
+      <div style="margin-top:16px; font-weight:700; margin-bottom:6px">Support areas</div>
+      <div class="support" id="supportRows"></div>
+    </div>
+  </div>
+
+  <div class="footer">AuraFlow  visual preview card</div>
+</div>
+
+<script>
+  const support = {
+    root:       $([math]::Round([double]($entry.support.root    ?? 0),3)),
+    sacral:     $([math]::Round([double]($entry.support.sacral  ?? 0),3)),
+    solar_plexus:$([math]::Round([double]($entry.support.solar_plexus ?? 0),3)),
+    heart:      $([math]::Round([double]($entry.support.heart   ?? 0),3)),
+    throat:     $([math]::Round([double]($entry.support.throat  ?? 0),3)),
+    third_eye:  $([math]::Round([double]($entry.support.third_eye ?? 0),3)),
+    crown:      $([math]::Round([double]($entry.support.crown   ?? 0),3))
+  };
+  const labels = {
+    root:"Root (Muladhara)", sacral:"Sacral (Svadhisthana)", solar_plexus:"Solar Plexus (Manipura)",
+    heart:"Heart (Anahata)", throat:"Throat (Vishuddha)", third_eye:"Third Eye (Ajna)", crown:"Crown (Sahasrara)"
+  };
+  const container = document.getElementById('supportRows');
+  const order = ["root","sacral","solar_plexus","heart","throat","third_eye","crown"];
+  order.forEach(k=>{
+    const row = document.createElement('div'); row.className='row';
+    const kdiv = document.createElement('div'); kdiv.className='k'; kdiv.textContent = labels[k] || k;
+    const bar  = document.createElement('div'); bar.className='bar';
+    const fill = document.createElement('div'); fill.className='fill';
+    bar.appendChild(fill); row.append(kdiv,bar); container.appendChild(row);
+    requestAnimationFrame(()=>{ fill.style.width = Math.min(100, Math.max(0, support[k]*100)) + "%"; });
+  });
+</script>
+"@ | Set-Content -Path $outFile -Encoding UTF8
+
+# Robust auto-open (PowerShell + cmd fallback)
+if (Test-Path $outFile) {
+  try { Start-Process $outFile } catch { cmd /c start "" "$outFile" }
+}
+Write-Host "Saved card  $outFile"
+
+
+
+==== FILE: C:\auraflow\src\preview.ps1 ====
+
+$root = Get-Location
+$dir  = Join-Path $root 'logs'
+if (-not (Test-Path $dir)) { throw "No logs directory at $dir." }
+
+$days = 7
+$records = @()
+for ($i=0; $i -lt $days; $i++) {
+  $d = (Get-Date).AddDays(-$i).ToString('yyyy-MM-dd')
+  $path = Join-Path $dir ("engine-{0}.log" -f $d)
+  if (Test-Path $path) {
+    $line = Get-Content $path | Select-Object -Last 1 | ConvertFrom-Json
+    if ($line) { $records += $line }
+  }
+}
+$records = $records | Sort-Object { $_.ts }
+
+if ($records.Count -eq 0) { throw "No recent records to preview." }
+
+$m = ($records | ForEach-Object { $_.mood })   -join ','
+$e = ($records | ForEach-Object { $_.energy }) -join ','
+$f = ($records | ForEach-Object { $_.focus })  -join ','
+$labels = ($records | ForEach-Object { (Get-Date $_.ts).ToString('MM-dd') }) -join '","'
+
+$out = Join-Path $root "preview.html"
+@"
+<!doctype html><meta charset="utf-8"><title>AuraFlow Preview</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>body{font-family:Segoe UI,system-ui,Arial;padding:24px;color:#222} .wrap{max-width:900px;margin:0 auto}</style>
+<div class="wrap">
+<h1>AuraFlow  Last 7 Days</h1>
+<canvas id="chart" height="120"></canvas>
+<script>
+const labels=["$labels"];
+const mood=[$m], energy=[$e], focus=[$f];
+new Chart(document.getElementById('chart'), {
+  type:"line",
+  data:{labels,
+    datasets:[
+      {label:"Mood", data:mood, tension:.3},
+      {label:"Energy", data:energy, tension:.3},
+      {label:"Focus", data:focus, tension:.3}
+    ]
+  },
+  options:{responsive:true, scales:{y:{beginAtZero:true, max:10}}}
+});
+</script>
+</div>
+"@ | Set-Content -Path $out -Encoding UTF8
+
+Write-Host "Saved preview  $out"
+Start-Process $out
+
+
+
+==== FILE: C:\auraflow\src\run-engine.backup.ps1 ====
+
+param(
+    [int]$Mood,[int]$Energy,[int]$Focus,[string]$Note,
+    [switch]$Chakra,[switch]$Tree,[switch]$UseWeights,
+    [ValidateSet("better","same","worse")] [string]$After,
+    [switch]$DebugKw,[switch]$Help
+)
+
+
+if ($Help) {
+    Write-Host "Usage:`n  powershell -ExecutionPolicy Bypass -File src\run-engine.ps1 -Mood 6 -Energy 7 -Focus 5 -Note ""arousal + desire"" -Chakra -UseWeights -DebugKw"
+    exit 0
+}
+
+function Resolve-RepoPath([string]$p){ Join-Path (Get-Location) $p }
+
+# Paths
+$rulesPath=Resolve-RepoPath "data\engine\rules.json"
+$chakCfgPath=Resolve-RepoPath "data\engine\chakra.json"
+$treeCfgPath=Resolve-RepoPath "data\engine\tree.json"
+$chakWeightPath=Resolve-RepoPath "data\engine\chakra_weights.json"
+$chakraKwPath=Resolve-RepoPath "data\engine\chakra_keywords.json"
+$contentPath=Resolve-RepoPath "data\engine\content_packs.json"
+$userBiasPath = Resolve-RepoPath "data\engine\user_bias.json"
+if(-not (Test-Path $rulesPath)){ throw "Missing $rulesPath" }
+
+# Load
+$rulesObj=Get-Content -Raw $rulesPath|ConvertFrom-Json
+$chakCfgObj= if(Test-Path $chakCfgPath){Get-Content -Raw $chakCfgPath|ConvertFrom-Json} else {$null}
+$treeCfgObj= if(Test-Path $treeCfgPath){Get-Content -Raw $treeCfgPath|ConvertFrom-Json} else {$null}
+$chakWeights= if(Test-Path $chakWeightPath){Get-Content -Raw $chakWeightPath|ConvertFrom-Json} else {$null}
+$chakraKw= if(Test-Path $chakraKwPath){Get-Content -Raw $chakraKwPath|ConvertFrom-Json} else {$null}
+$contentPacks= if(Test-Path $contentPath){Get-Content -Raw $contentPath|ConvertFrom-Json} else {$null}
+
+$userBias = if (Test-Path $userBiasPath) {
+    Get-Content -Raw $userBiasPath | ConvertFrom-Json
+} else {
+    # default zero bias object
+    [pscustomobject]@{
+        chakra = [pscustomobject]@{
+            root=0.0; sacral=0.0; solar_plexus=0.0; heart=0.0; throat=0.0; third_eye=0.0; crown=0.0
+        }
+        last_update = ""
+    }
+}
+
+# Emojis
+$emojiMap=@{
+  "mood"=@("","","","","","","","","","","");
+  "energy"=@("","","","","","","","","","","");
+  "focus"=@("","","","","","","","","","","")
+}
+
+function Read-Int([string]$label,[string]$key){
+  while($true){
+    $v=Read-Host "$label (0-10)"
+    if($v -match '^\d+$' -and [int]$v -ge 0 -and [int]$v -le 10){
+      $i=[int]$v; Write-Host "   $i $($emojiMap[$key][$i])"; return $i
+    } else { Write-Host "Enter 0..10" -ForegroundColor Yellow }
+  }
+}
+
+function Tokenize-Note([string]$t){
+  if(-not $t){ return @() }
+  (($t.ToLower() -replace "[^a-z0-9\s]"," ") -split "\s+") | Where-Object { $_ -ne "" }
+}
+
+# Inputs
+if($PSBoundParameters.Keys -notcontains 'Mood'){ $Mood=Read-Int "Mood" "mood" }
+if($PSBoundParameters.Keys -notcontains 'Energy'){ $Energy=Read-Int "Energy" "energy" }
+if($PSBoundParameters.Keys -notcontains 'Focus'){ $Focus=Read-Int "Focus" "focus" }
+if($null -eq $Note){ $Note=Read-Host "Optional Note (Enter to skip)" }
+
+# Buckets
+function Get-Bucket([int]$v,$low,$high){
+  if($v -ge $low[0] -and $v -le $low[1]){"low"}
+  elseif($v -ge $high[0] -and $v -le $high[1]){"high"}
+  else {"mid"}
+}
+$bMoodLow=$rulesObj.buckets.mood.low; $bMoodHigh=$rulesObj.buckets.mood.high
+$bEnergyLow=$rulesObj.buckets.energy.low; $bEnergyHigh=$rulesObj.buckets.energy.high
+$bFocusLow=$rulesObj.buckets.focus.low; $bFocusHigh=$rulesObj.buckets.focus.high
+$moodBucket=Get-Bucket $Mood $bMoodLow $bMoodHigh
+$energyBucket=Get-Bucket $Energy $bEnergyLow $bEnergyHigh
+$focusBucket=Get-Bucket $Focus $bFocusLow $bFocusHigh
+
+# Quick tags
+$noteTag=$null; $tags=@{}
+if($Note){
+  $l=$Note.ToLower()
+  if($l -match 'anxious|anxiety|panic|overwhelm'){$noteTag='anxious';$tags.tag_anxious=1}
+  if($l -match 'peace|calm|tranquil|serene'){ if(-not $noteTag){$noteTag='peace'}; $tags.tag_peace=1 }
+  if($l -match 'gratitude|grateful|thank'){$tags.tag_gratitude=1}
+  if($l -match 'love|care|compassion'){$tags.tag_love=1}
+  if($l -match 'stress|stressed|tense'){$tags.tag_stress=1}
+}
+
+# Refined keyword mapping
+$noteTokens=Tokenize-Note $Note
+$chakraOrder=@("root","sacral","solar_plexus","heart","throat","third_eye","crown")
+$kwCounts=@{}
+if($chakraKw -and $noteTokens.Count -gt 0){
+  foreach($ck in $chakraOrder){
+    $kwCounts[$ck]=0
+    if($chakraKw.$ck.keywords){ foreach($kw in $chakraKw.$ck.keywords){ if($noteTokens -contains ($kw.ToLower())){ $kwCounts[$ck]++ } } }
+    if($chakraKw.$ck.somatic){
+      foreach($kw in $chakraKw.$ck.somatic){
+        $needle=$kw.ToLower()
+        foreach($tok in $noteTokens){
+          if($tok -eq $needle){ $kwCounts[$ck]++ }
+          elseif($needle.Length -ge 5 -and $tok.StartsWith($needle.Substring(0,5))){ $kwCounts[$ck]++ }
+        }
+      }
+    }
+  }
+}
+if($DebugKw){
+  Write-Host "`nDEBUG  Keywords" -ForegroundColor Yellow
+  Write-Host ("  chakra_keywords.json loaded: {0}" -f ([bool]$chakraKw))
+  Write-Host ("  tokens: {0}" -f ($noteTokens -join ", "))
+  foreach($k in $chakraOrder){ "{0,-12}: {1}" -f $k,$kwCounts[$k] | Write-Host }
+}
+
+# Rule resolution
+$rules=$rulesObj.rules; $selectedRule=$null
+if($noteTag -eq 'anxious'){ $selectedRule=($rules|Where-Object{ $_.id -eq 'anxious_any'})[0] }
+elseif($noteTag -eq 'peace'){ $selectedRule=($rules|Where-Object{ $_.id -eq 'peace_any'})[0] }
+if(-not $selectedRule){
+  $cand=$rules|Where-Object{ $_.when.mood -eq $moodBucket -and $_.when.energy -eq $energyBucket -and $_.when.focus -eq $focusBucket }
+  if($cand.Count -gt 0){ $selectedRule=$cand[0] }
+}
+if(-not $selectedRule){
+  $mTry=@($moodBucket); if($moodBucket -eq 'mid'){$mTry=@('low','high')}
+  $eTry=@($energyBucket); if($energyBucket -eq 'mid'){$eTry=@('low','high')}
+  $fTry=@($focusBucket); if($focusBucket -eq 'mid'){$fTry=@('low','high')}
+  foreach($m in $mTry){ foreach($e in $eTry){ foreach($f in $fTry){
+    $hit=$rules|Where-Object{ $_.when.mood -eq $m -and $_.when.energy -eq $e -and $_.when.focus -eq $f }
+    if($hit.Count -gt 0){ $selectedRule=$hit[0]; break }
+  } } }
+}
+if(-not $selectedRule){ foreach($rid in $rulesObj.order){ $r=($rules|Where-Object{ $_.id -eq $rid})[0]; if($r){ $selectedRule=$r; break } } }
+if(-not $selectedRule){ throw "No matching rule found. Check data\engine\rules.json." }
+$shift=$selectedRule.shift; $sample=$selectedRule.example
+
+# Chakra selection
+$chakraNodes=@(); $chakraScoresOut=@()
+if($Chakra){
+  if($UseWeights -and $chakWeights){
+    $nm=[double]$Mood/10; $ne=[double]$Energy/10; $nf=[double]$Focus/10
+    $feat=@{"mood"=$nm;"energy"=$ne;"focus"=$nf;"tag_anxious"=([int]$tags.tag_anxious);"tag_peace"=([int]$tags.tag_peace);"tag_gratitude"=([int]$tags.tag_gratitude);"tag_love"=([int]$tags.tag_love);"tag_stress"=([int]$tags.tag_stress)}
+    foreach($ck in $chakWeights.weights.PSObject.Properties.Name){
+      $w=$chakWeights.weights.$ck; $score=0.0
+      foreach($k in $chakWeights.features){
+        $fv=0.0; if($feat.ContainsKey($k)){$fv=[double]$feat[$k]}
+        $wv=0.0; if($w.PSObject.Properties.Name -contains $k){$wv=[double]$w.$k}
+        $score += ($fv*$wv)
+      }
+      $label=$chakWeights.labels.$ck; if(-not $label){$label=$ck}
+      $chakraScoresOut += [pscustomobject]@{ key=$ck; label=$label; score=[math]::Round($score,3) }
+    }
+
+    # Keyword bumps + disambiguation
+    if($chakraKw -and $noteTokens -and $chakraScoresOut.Count -gt 0){
+      $kwWeight=[double]$chakraKw.weights.keyword_hit
+      $rootMoney=[double]$chakraKw.weights.money_root_bonus
+      $thirdeyeCl=[double]$chakraKw.weights.clarity_thirdeye_bonus
+
+      $moneyList=@("rent","mortgage","bills","debt","income","money","cash","paycheck","job","security")
+      $clarList=@("clarity","vision","insight","intuition","confused","foggy","idea")
+      $moneyHits=($noteTokens|Where-Object{ $moneyList -contains $_ }).Count
+      $clarityHits=($noteTokens|Where-Object{ $clarList -contains $_ }).Count
+      if ($moneyHits -gt 0) {
+          $targets = $chakraScoresOut | Where-Object key -eq "root"
+          foreach ($t in $targets) { $t.score += ($rootMoney * $moneyHits) }
+      }
+      if ($clarityHits -gt 0) {
+          $targets = $chakraScoresOut | Where-Object key -eq "third_eye"
+          foreach ($t in $targets) { $t.score += ($thirdeyeCl * $clarityHits) }
+      }
+
+      foreach($c in $chakraScoresOut){ $k=$c.key; if($kwCounts.ContainsKey($k)){ $c.score += ($kwCounts[$k]*$kwWeight) } }
+
+      $physTerms=@(); $emoTerms=@()
+      if($chakraKw.disambiguation){
+        $physTerms=@($chakraKw.disambiguation.physical_arousal_terms|ForEach-Object{ $_.ToLower() })
+        $emoTerms=@($chakraKw.disambiguation.emotional_warmth_terms|ForEach-Object{ $_.ToLower() })
+      }
+      $physHits=($noteTokens|Where-Object{ $physTerms -contains $_ }).Count
+      $emoHits=($noteTokens|Where-Object{ $emoTerms  -contains $_ }).Count
+      if ($physHits -gt 0 -and $emoHits -eq 0 -and $chakraKw.weights.physical_overrides_heart) {
+          $sacralTargets = $chakraScoresOut | Where-Object key -eq "sacral"
+          foreach ($t in $sacralTargets) { $t.score += 0.6 }
+
+          $heartTargets = $chakraScoresOut | Where-Object key -eq "heart"
+          foreach ($t in $heartTargets) { $t.score -= 0.3 }
+      }
+    }
+
+    $chakraScoresOut = $chakraScoresOut | Sort-Object -Property score -Descending
+    $chakraNodes = ($chakraScoresOut | Select-Object -First 2).key
+  } elseif($chakCfgObj){
+    $names=$chakCfgObj.map.PSObject.Properties.Name
+    if($names -contains $shift){ $chakraNodes=@($chakCfgObj.map.$shift) }
+  }
+}
+
+# Practice selection
+$contentId=$null; $contentText=$sample
+if($contentPacks){
+  $pack=$contentPacks.$shift
+  if($pack){
+    $picked=$null
+    if($Chakra -and $chakraNodes.Count -gt 0 -and $pack.chakra){
+      foreach($n in $chakraNodes){
+        if($pack.chakra.PSObject.Properties.Name -contains $n){
+          $list=$pack.chakra.$n; if($list.Count -gt 0){ $picked = $list | Get-Random; break }
+        }
+      }
+    }
+    if(-not $picked -and $pack.general){ $picked=$pack.general | Get-Random }
+    if($picked){ $contentId=$picked.id; $contentText=$picked.text }
+  }
+}
+
+# Tree
+$treeNodes=@()
+if($Tree -and $treeCfgObj){
+  $names=$treeCfgObj.map.PSObject.Properties.Name
+  if($names -contains $shift){ $treeNodes=@($treeCfgObj.map.$shift) }
+}
+
+# Output
+$emoji=@{mood=$emojiMap.mood[$Mood];energy=$emojiMap.energy[$Energy];focus=$emojiMap.focus[$Focus]}
+Write-Host "`nAURAFLOW  Morning State-Shift Result"
+Write-Host ("-"*48)
+("{0,-14}: {1} {2}" -f "Mood",$Mood,$emoji.mood)   | Write-Host
+("{0,-14}: {1} {2}" -f "Energy",$Energy,$emoji.energy) | Write-Host
+("{0,-14}: {1} {2}" -f "Focus",$Focus,$emoji.focus)   | Write-Host
+if ($Note) { ("{0,-14}: {1}" -f "Note",$Note) | Write-Host }
+
+
+("{0,-14}: {1}" -f "Shift",$shift) | Write-Host
+
+# --- Normalize & fix letter-by-letter spacing ---
+# 1) Normalize ANY Unicode space separator to regular space
+#    (\p{Zs} catches NBSP, thin spaces, en spaces, etc.)
+$contentText = [regex]::Replace($contentText, '\p{Zs}', ' ')
+
+# 2) If the string looks like it's letter-by-letter spaced,
+#    remove single spaces that sit BETWEEN letters only.
+$pairCount = ([regex]::Matches($contentText, '(?<=\p{L})\s(?=\p{L})')).Count
+if ($pairCount -ge 10) {
+    $contentText = [regex]::Replace($contentText, '(?<=\p{L})\s(?=\p{L})', '')
+}
+
+# 3) Normal tidy
+$contentText = [regex]::Replace($contentText, '\s{2,}', ' ')         # collapse doubles
+$contentText = [regex]::Replace($contentText, '(hips)\s*softness', '$1 — softness')
+$contentText = [regex]::Replace($contentText, '([a-z])([A-Z])', '$1 $2')  # add space before Uppercase after lowercase
+$contentText = $contentText.Trim()
+
+("{0,-14}: {1}" -f "Practice", $contentText) | Write-Host
+
+
+
+
+
+if($Chakra -and ($chakraNodes.Count -gt 0 -or $chakraScoresOut.Count -gt 0)){
+  Write-Host ""
+  if($UseWeights -and $chakraScoresOut.Count -gt 0){
+    Write-Host "Support areas today (not a diagnosis):" -ForegroundColor Magenta
+    $display=$chakraScoresOut | Sort-Object { [array]::IndexOf(@("root","sacral","solar_plexus","heart","throat","third_eye","crown"), $_.key) }
+    foreach($c in $display){ Write-Host ("  - {0}: {1}" -f $c.label,[math]::Round($c.score,3)) }
+    Write-Host "Focus gently on:" -ForegroundColor Magenta
+  } else {
+    Write-Host "Support areas today:" -ForegroundColor Magenta
+  }
+  $orderedTop=@()
+  foreach($k in @("root","sacral","solar_plexus","heart","throat","third_eye","crown")){ if($chakraNodes -contains $k){ $orderedTop+=$k } }
+  foreach($n in $orderedTop){
+    $lab=$n
+    if($chakWeights -and $chakWeights.labels.$n){$lab=$chakWeights.labels.$n}
+    elseif($chakCfgObj -and $chakCfgObj.labels.$n){$lab=$chakCfgObj.labels.$n}
+    Write-Host ("  - {0} [{1}]" -f $lab,$n)
+  }
+}
+
+# Log
+New-Item -ItemType Directory -Force -Path (Resolve-RepoPath "logs")|Out-Null
+$stamp=Get-Date -Format "yyyy-MM-dd"
+$log=Resolve-RepoPath ("logs\engine-{0}.log" -f $stamp)
+([pscustomobject]@{ts=(Get-Date).ToString("o");mood=$Mood;energy=$Energy;focus=$Focus;note=$Note;shift=$shift;content_id=$contentId;after=$After;chakra=($chakraNodes -join ",");tree=($treeNodes -join ",");usedWeights=([bool]$UseWeights)}|ConvertTo-Json -Compress)|Add-Content -Path $log
+exit 0
+
+
+
+==== FILE: C:\auraflow\src\run-engine.ps1 ====
+
+param(
+    [int]$Mood,[int]$Energy,[int]$Focus,[string]$Note,
+    [switch]$Chakra,[switch]$Tree,[switch]$UseWeights,
+    [ValidateSet("better","same","worse")] [string]$After,
+    [switch]$DebugKw,[switch]$Help
+)
+
+
+if ($Help) {
+    Write-Host "Usage:`n  powershell -ExecutionPolicy Bypass -File src\run-engine.ps1 -Mood 6 -Energy 7 -Focus 5 -Note ""arousal + desire"" -Chakra -UseWeights -DebugKw"
+    exit 0
+}
+
+function Resolve-RepoPath([string]$p){ Join-Path (Get-Location) $p }
+
+# Paths
+$rulesPath=Resolve-RepoPath "data\engine\rules.json"
+$chakCfgPath=Resolve-RepoPath "data\engine\chakra.json"
+$treeCfgPath=Resolve-RepoPath "data\engine\tree.json"
+$chakWeightPath=Resolve-RepoPath "data\engine\chakra_weights.json"
+$chakraKwPath=Resolve-RepoPath "data\engine\chakra_keywords.json"
+$contentPath=Resolve-RepoPath "data\engine\content_packs.json"
+$userBiasPath = Resolve-RepoPath "data\engine\user_bias.json"
+if(-not (Test-Path $rulesPath)){ throw "Missing $rulesPath" }
+
+# Load
+$rulesObj=Get-Content -Raw $rulesPath|ConvertFrom-Json
+$chakCfgObj= if(Test-Path $chakCfgPath){Get-Content -Raw $chakCfgPath|ConvertFrom-Json} else {$null}
+$treeCfgObj= if(Test-Path $treeCfgPath){Get-Content -Raw $treeCfgPath|ConvertFrom-Json} else {$null}
+$chakWeights= if(Test-Path $chakWeightPath){Get-Content -Raw $chakWeightPath|ConvertFrom-Json} else {$null}
+$chakraKw= if(Test-Path $chakraKwPath){Get-Content -Raw $chakraKwPath|ConvertFrom-Json} else {$null}
+$contentPacks= if(Test-Path $contentPath){Get-Content -Raw $contentPath|ConvertFrom-Json} else {$null}
+
+$userBias = if (Test-Path $userBiasPath) {
+    Get-Content -Raw $userBiasPath | ConvertFrom-Json
+} else {
+    # default zero bias object
+    [pscustomobject]@{
+        chakra = [pscustomobject]@{
+            root=0.0; sacral=0.0; solar_plexus=0.0; heart=0.0; throat=0.0; third_eye=0.0; crown=0.0
+        }
+        last_update = ""
+    }
+}
+
+# Emojis
+$emojiMap=@{
+  "mood"=@("","","","","","","","","","","");
+  "energy"=@("","","","","","","","","","","");
+  "focus"=@("","","","","","","","","","","")
+}
+
+function Read-Int([string]$label,[string]$key){
+  while($true){
+    $v=Read-Host "$label (0-10)"
+    if($v -match '^\d+$' -and [int]$v -ge 0 -and [int]$v -le 10){
+      $i=[int]$v; Write-Host "   $i $($emojiMap[$key][$i])"; return $i
+    } else { Write-Host "Enter 0..10" -ForegroundColor Yellow }
+  }
+}
+
+function Tokenize-Note([string]$t){
+  if(-not $t){ return @() }
+  (($t.ToLower() -replace "[^a-z0-9\s]"," ") -split "\s+") | Where-Object { $_ -ne "" }
+}
+
+# Inputs
+if($PSBoundParameters.Keys -notcontains 'Mood'){ $Mood=Read-Int "Mood" "mood" }
+if($PSBoundParameters.Keys -notcontains 'Energy'){ $Energy=Read-Int "Energy" "energy" }
+if($PSBoundParameters.Keys -notcontains 'Focus'){ $Focus=Read-Int "Focus" "focus" }
+if($null -eq $Note){ $Note=Read-Host "Optional Note (Enter to skip)" }
+
+# Buckets
+function Get-Bucket([int]$v,$low,$high){
+  if($v -ge $low[0] -and $v -le $low[1]){"low"}
+  elseif($v -ge $high[0] -and $v -le $high[1]){"high"}
+  else {"mid"}
+}
+$bMoodLow=$rulesObj.buckets.mood.low; $bMoodHigh=$rulesObj.buckets.mood.high
+$bEnergyLow=$rulesObj.buckets.energy.low; $bEnergyHigh=$rulesObj.buckets.energy.high
+$bFocusLow=$rulesObj.buckets.focus.low; $bFocusHigh=$rulesObj.buckets.focus.high
+$moodBucket=Get-Bucket $Mood $bMoodLow $bMoodHigh
+$energyBucket=Get-Bucket $Energy $bEnergyLow $bEnergyHigh
+$focusBucket=Get-Bucket $Focus $bFocusLow $bFocusHigh
+
+# Quick tags
+$noteTag=$null; $tags=@{}
+if($Note){
+  $l=$Note.ToLower()
+  if($l -match 'anxious|anxiety|panic|overwhelm'){$noteTag='anxious';$tags.tag_anxious=1}
+  if($l -match 'peace|calm|tranquil|serene'){ if(-not $noteTag){$noteTag='peace'}; $tags.tag_peace=1 }
+  if($l -match 'gratitude|grateful|thank'){$tags.tag_gratitude=1}
+  if($l -match 'love|care|compassion'){$tags.tag_love=1}
+  if($l -match 'stress|stressed|tense'){$tags.tag_stress=1}
+}
+
+# Refined keyword mapping
+$noteTokens=Tokenize-Note $Note
+$chakraOrder=@("root","sacral","solar_plexus","heart","throat","third_eye","crown")
+$kwCounts=@{}
+if($chakraKw -and $noteTokens.Count -gt 0){
+  foreach($ck in $chakraOrder){
+    $kwCounts[$ck]=0
+    if($chakraKw.$ck.keywords){ foreach($kw in $chakraKw.$ck.keywords){ if($noteTokens -contains ($kw.ToLower())){ $kwCounts[$ck]++ } } }
+    if($chakraKw.$ck.somatic){
+      foreach($kw in $chakraKw.$ck.somatic){
+        $needle=$kw.ToLower()
+        foreach($tok in $noteTokens){
+          if($tok -eq $needle){ $kwCounts[$ck]++ }
+          elseif($needle.Length -ge 5 -and $tok.StartsWith($needle.Substring(0,5))){ $kwCounts[$ck]++ }
+        }
+      }
+    }
+  }
+}
+if($DebugKw){
+  Write-Host "`nDEBUG  Keywords" -ForegroundColor Yellow
+  Write-Host ("  chakra_keywords.json loaded: {0}" -f ([bool]$chakraKw))
+  Write-Host ("  tokens: {0}" -f ($noteTokens -join ", "))
+  foreach($k in $chakraOrder){ "{0,-12}: {1}" -f $k,$kwCounts[$k] | Write-Host }
+}
+
+# Rule resolution
+$rules=$rulesObj.rules; $selectedRule=$null
+if($noteTag -eq 'anxious'){ $selectedRule=($rules|Where-Object{ $_.id -eq 'anxious_any'})[0] }
+elseif($noteTag -eq 'peace'){ $selectedRule=($rules|Where-Object{ $_.id -eq 'peace_any'})[0] }
+if(-not $selectedRule){
+  $cand=$rules|Where-Object{ $_.when.mood -eq $moodBucket -and $_.when.energy -eq $energyBucket -and $_.when.focus -eq $focusBucket }
+  if($cand.Count -gt 0){ $selectedRule=$cand[0] }
+}
+if(-not $selectedRule){
+  $mTry=@($moodBucket); if($moodBucket -eq 'mid'){$mTry=@('low','high')}
+  $eTry=@($energyBucket); if($energyBucket -eq 'mid'){$eTry=@('low','high')}
+  $fTry=@($focusBucket); if($focusBucket -eq 'mid'){$fTry=@('low','high')}
+  foreach($m in $mTry){ foreach($e in $eTry){ foreach($f in $fTry){
+    $hit=$rules|Where-Object{ $_.when.mood -eq $m -and $_.when.energy -eq $e -and $_.when.focus -eq $f }
+    if($hit.Count -gt 0){ $selectedRule=$hit[0]; break }
+  } } }
+}
+if(-not $selectedRule){ foreach($rid in $rulesObj.order){ $r=($rules|Where-Object{ $_.id -eq $rid})[0]; if($r){ $selectedRule=$r; break } } }
+if(-not $selectedRule){ throw "No matching rule found. Check data\engine\rules.json." }
+$shift=$selectedRule.shift; $sample=$selectedRule.example
+
+# Chakra selection
+$chakraNodes=@(); $chakraScoresOut=@()
+if($Chakra){
+  if($UseWeights -and $chakWeights){
+    $nm=[double]$Mood/10; $ne=[double]$Energy/10; $nf=[double]$Focus/10
+    $feat=@{"mood"=$nm;"energy"=$ne;"focus"=$nf;"tag_anxious"=([int]$tags.tag_anxious);"tag_peace"=([int]$tags.tag_peace);"tag_gratitude"=([int]$tags.tag_gratitude);"tag_love"=([int]$tags.tag_love);"tag_stress"=([int]$tags.tag_stress)}
+    foreach($ck in $chakWeights.weights.PSObject.Properties.Name){
+      $w=$chakWeights.weights.$ck; $score=0.0
+      foreach($k in $chakWeights.features){
+        $fv=0.0; if($feat.ContainsKey($k)){$fv=[double]$feat[$k]}
+        $wv=0.0; if($w.PSObject.Properties.Name -contains $k){$wv=[double]$w.$k}
+        $score += ($fv*$wv)
+      }
+      $label=$chakWeights.labels.$ck; if(-not $label){$label=$ck}
+      $chakraScoresOut += [pscustomobject]@{ key=$ck; label=$label; score=[math]::Round($score,3) }
+    }
+
+    # Keyword bumps + disambiguation
+    if($chakraKw -and $noteTokens -and $chakraScoresOut.Count -gt 0){
+      $kwWeight=[double]$chakraKw.weights.keyword_hit
+      $rootMoney=[double]$chakraKw.weights.money_root_bonus
+      $thirdeyeCl=[double]$chakraKw.weights.clarity_thirdeye_bonus
+
+      $moneyList=@("rent","mortgage","bills","debt","income","money","cash","paycheck","job","security")
+      $clarList=@("clarity","vision","insight","intuition","confused","foggy","idea")
+      $moneyHits=($noteTokens|Where-Object{ $moneyList -contains $_ }).Count
+      $clarityHits=($noteTokens|Where-Object{ $clarList -contains $_ }).Count
+      if ($moneyHits -gt 0) {
+          $targets = $chakraScoresOut | Where-Object key -eq "root"
+          foreach ($t in $targets) { $t.score += ($rootMoney * $moneyHits) }
+      }
+      if ($clarityHits -gt 0) {
+          $targets = $chakraScoresOut | Where-Object key -eq "third_eye"
+          foreach ($t in $targets) { $t.score += ($thirdeyeCl * $clarityHits) }
+      }
+
+      foreach($c in $chakraScoresOut){ $k=$c.key; if($kwCounts.ContainsKey($k)){ $c.score += ($kwCounts[$k]*$kwWeight) } }
+
+      $physTerms=@(); $emoTerms=@()
+      if($chakraKw.disambiguation){
+        $physTerms=@($chakraKw.disambiguation.physical_arousal_terms|ForEach-Object{ $_.ToLower() })
+        $emoTerms=@($chakraKw.disambiguation.emotional_warmth_terms|ForEach-Object{ $_.ToLower() })
+      }
+      $physHits=($noteTokens|Where-Object{ $physTerms -contains $_ }).Count
+      $emoHits=($noteTokens|Where-Object{ $emoTerms  -contains $_ }).Count
+      if ($physHits -gt 0 -and $emoHits -eq 0 -and $chakraKw.weights.physical_overrides_heart) {
+          $sacralTargets = $chakraScoresOut | Where-Object key -eq "sacral"
+          foreach ($t in $sacralTargets) { $t.score += 0.6 }
+
+          $heartTargets = $chakraScoresOut | Where-Object key -eq "heart"
+          foreach ($t in $heartTargets) { $t.score -= 0.3 }
+      }
+    }
+
+    $chakraScoresOut = $chakraScoresOut | Sort-Object -Property score -Descending
+    $chakraNodes = ($chakraScoresOut | Select-Object -First 2).key
+  } elseif($chakCfgObj){
+    $names=$chakCfgObj.map.PSObject.Properties.Name
+    if($names -contains $shift){ $chakraNodes=@($chakCfgObj.map.$shift) }
+  }
+}
+
+# Practice selection
+$contentId=$null; $contentText=$sample
+if($contentPacks){
+  $pack=$contentPacks.$shift
+  if($pack){
+    $picked=$null
+    if($Chakra -and $chakraNodes.Count -gt 0 -and $pack.chakra){
+      foreach($n in $chakraNodes){
+        if($pack.chakra.PSObject.Properties.Name -contains $n){
+          $list=$pack.chakra.$n; if($list.Count -gt 0){ $picked = $list | Get-Random; break }
+        }
+      }
+    }
+    if(-not $picked -and $pack.general){ $picked=$pack.general | Get-Random }
+    if($picked){ $contentId=$picked.id; $contentText=$picked.text }
+  }
+}
+
+# Tree
+$treeNodes=@()
+if($Tree -and $treeCfgObj){
+  $names=$treeCfgObj.map.PSObject.Properties.Name
+  if($names -contains $shift){ $treeNodes=@($treeCfgObj.map.$shift) }
+}
+
+# Output
+$emoji=@{mood=$emojiMap.mood[$Mood];energy=$emojiMap.energy[$Energy];focus=$emojiMap.focus[$Focus]}
+Write-Host "`nAURAFLOW  Morning State-Shift Result"
+Write-Host ("-"*48)
+("{0,-14}: {1} {2}" -f "Mood",$Mood,$emoji.mood)   | Write-Host
+("{0,-14}: {1} {2}" -f "Energy",$Energy,$emoji.energy) | Write-Host
+("{0,-14}: {1} {2}" -f "Focus",$Focus,$emoji.focus)   | Write-Host
+if ($Note) { ("{0,-14}: {1}" -f "Note",$Note) | Write-Host }
+
+
+("{0,-14}: {1}" -f "Shift",$shift) | Write-Host
+
+# --- Normalize & fix letter-by-letter spacing ---
+# 1) Normalize ANY Unicode space separator to regular space
+#    (\p{Zs} catches NBSP, thin spaces, en spaces, etc.)
+$contentText = [regex]::Replace($contentText, '\p{Zs}', ' ')
+
+# 2) If the string looks like it's letter-by-letter spaced,
+#    remove single spaces that sit BETWEEN letters only.
+$pairCount = ([regex]::Matches($contentText, '(?<=\p{L})\s(?=\p{L})')).Count
+if ($pairCount -ge 10) {
+    $contentText = [regex]::Replace($contentText, '(?<=\p{L})\s(?=\p{L})', '')
+}
+
+# 3) Normal tidy
+$contentText = [regex]::Replace($contentText, '\s{2,}', ' ')         # collapse doubles
+$contentText = [regex]::Replace($contentText, '(hips)\s*softness', '$1 — softness')
+$contentText = [regex]::Replace($contentText, '([a-z])([A-Z])', '$1 $2')  # add space before Uppercase after lowercase
+$contentText = $contentText.Trim()
+
+("{0,-14}: {1}" -f "Practice", $contentText) | Write-Host
+
+
+
+
+
+if($Chakra -and ($chakraNodes.Count -gt 0 -or $chakraScoresOut.Count -gt 0)){
+  Write-Host ""
+  if($UseWeights -and $chakraScoresOut.Count -gt 0){
+    Write-Host "Support areas today (not a diagnosis):" -ForegroundColor Magenta
+    $display=$chakraScoresOut | Sort-Object { [array]::IndexOf(@("root","sacral","solar_plexus","heart","throat","third_eye","crown"), $_.key) }
+    foreach($c in $display){ Write-Host ("  - {0}: {1}" -f $c.label,[math]::Round($c.score,3)) }
+    Write-Host "Focus gently on:" -ForegroundColor Magenta
+  } else {
+    Write-Host "Support areas today:" -ForegroundColor Magenta
+  }
+  $orderedTop=@()
+  foreach($k in @("root","sacral","solar_plexus","heart","throat","third_eye","crown")){ if($chakraNodes -contains $k){ $orderedTop+=$k } }
+  foreach($n in $orderedTop){
+    $lab=$n
+    if($chakWeights -and $chakWeights.labels.$n){$lab=$chakWeights.labels.$n}
+    elseif($chakCfgObj -and $chakCfgObj.labels.$n){$lab=$chakCfgObj.labels.$n}
+    Write-Host ("  - {0} [{1}]" -f $lab,$n)
+  }
+}
+
+# Log
+New-Item -ItemType Directory -Force -Path (Resolve-RepoPath "logs")|Out-Null
+$stamp=Get-Date -Format "yyyy-MM-dd"
+$log=Resolve-RepoPath ("logs\engine-{0}.log" -f $stamp)
+([pscustomobject]@{ts=(Get-Date).ToString("o");mood=$Mood;energy=$Energy;focus=$Focus;note=$Note;shift=$shift;content_id=$contentId;after=$After;chakra=($chakraNodes -join ",");tree=($treeNodes -join ",");usedWeights=([bool]$UseWeights)}|ConvertTo-Json -Compress)|Add-Content -Path $log
+# Auto-export Share Card for today (best-effort, non-blocking)
+try {
+  powershell -ExecutionPolicy Bypass -File (Join-Path (Get-Location) 'src\export-card.ps1') -Date (Get-Date -Format 'yyyy-MM-dd') | Out-Null
+} catch { }
+
+# Auto-export Share Card for today (best-effort)
+try {
+  powershell -ExecutionPolicy Bypass -File (Join-Path (Get-Location) 'src\export-card.ps1') -Date (Get-Date -Format 'yyyy-MM-dd') | Out-Null
+} catch { }
+# Auto-export Share Card for today (best-effort)
+try {
+  powershell -ExecutionPolicy Bypass -File (Join-Path (Get-Location) 'src\export-card.ps1') -Date (Get-Date -Format 'yyyy-MM-dd') | Out-Null
+} catch { }
+# Auto-export Share Card for today (best-effort)
+try {
+  powershell -ExecutionPolicy Bypass -File (Join-Path (Get-Location) 'src\export-card.ps1') -Date (Get-Date -Format 'yyyy-MM-dd') | Out-Null
+} catch { }
+exit 0
+
+
+
+==== FILE: C:\auraflow\src\run-engine.stable.ps1 ====
+
+param(
+    [int]$Mood,[int]$Energy,[int]$Focus,[string]$Note,
+    [switch]$Chakra,[switch]$Tree,[switch]$UseWeights,
+    [ValidateSet("better","same","worse")] [string]$After,
+    [switch]$DebugKw,[switch]$Help
+)
+
+
+if ($Help) {
+    Write-Host "Usage:`n  powershell -ExecutionPolicy Bypass -File src\run-engine.ps1 -Mood 6 -Energy 7 -Focus 5 -Note ""arousal + desire"" -Chakra -UseWeights -DebugKw"
+    exit 0
+}
+
+function Resolve-RepoPath([string]$p){ Join-Path (Get-Location) $p }
+
+# Paths
+$rulesPath=Resolve-RepoPath "data\engine\rules.json"
+$chakCfgPath=Resolve-RepoPath "data\engine\chakra.json"
+$treeCfgPath=Resolve-RepoPath "data\engine\tree.json"
+$chakWeightPath=Resolve-RepoPath "data\engine\chakra_weights.json"
+$chakraKwPath=Resolve-RepoPath "data\engine\chakra_keywords.json"
+$contentPath=Resolve-RepoPath "data\engine\content_packs.json"
+$userBiasPath = Resolve-RepoPath "data\engine\user_bias.json"
+if(-not (Test-Path $rulesPath)){ throw "Missing $rulesPath" }
+
+# Load
+$rulesObj=Get-Content -Raw $rulesPath|ConvertFrom-Json
+$chakCfgObj= if(Test-Path $chakCfgPath){Get-Content -Raw $chakCfgPath|ConvertFrom-Json} else {$null}
+$treeCfgObj= if(Test-Path $treeCfgPath){Get-Content -Raw $treeCfgPath|ConvertFrom-Json} else {$null}
+$chakWeights= if(Test-Path $chakWeightPath){Get-Content -Raw $chakWeightPath|ConvertFrom-Json} else {$null}
+$chakraKw= if(Test-Path $chakraKwPath){Get-Content -Raw $chakraKwPath|ConvertFrom-Json} else {$null}
+$contentPacks= if(Test-Path $contentPath){Get-Content -Raw $contentPath|ConvertFrom-Json} else {$null}
+
+$userBias = if (Test-Path $userBiasPath) {
+    Get-Content -Raw $userBiasPath | ConvertFrom-Json
+} else {
+    # default zero bias object
+    [pscustomobject]@{
+        chakra = [pscustomobject]@{
+            root=0.0; sacral=0.0; solar_plexus=0.0; heart=0.0; throat=0.0; third_eye=0.0; crown=0.0
+        }
+        last_update = ""
+    }
+}
+
+# Emojis
+$emojiMap=@{
+  "mood"=@("","","","","","","","","","","");
+  "energy"=@("","","","","","","","","","","");
+  "focus"=@("","","","","","","","","","","")
+}
+
+function Read-Int([string]$label,[string]$key){
+  while($true){
+    $v=Read-Host "$label (0-10)"
+    if($v -match '^\d+$' -and [int]$v -ge 0 -and [int]$v -le 10){
+      $i=[int]$v; Write-Host "   $i $($emojiMap[$key][$i])"; return $i
+    } else { Write-Host "Enter 0..10" -ForegroundColor Yellow }
+  }
+}
+
+function Tokenize-Note([string]$t){
+  if(-not $t){ return @() }
+  (($t.ToLower() -replace "[^a-z0-9\s]"," ") -split "\s+") | Where-Object { $_ -ne "" }
+}
+
+# Inputs
+if($PSBoundParameters.Keys -notcontains 'Mood'){ $Mood=Read-Int "Mood" "mood" }
+if($PSBoundParameters.Keys -notcontains 'Energy'){ $Energy=Read-Int "Energy" "energy" }
+if($PSBoundParameters.Keys -notcontains 'Focus'){ $Focus=Read-Int "Focus" "focus" }
+if($null -eq $Note){ $Note=Read-Host "Optional Note (Enter to skip)" }
+
+# Buckets
+function Get-Bucket([int]$v,$low,$high){
+  if($v -ge $low[0] -and $v -le $low[1]){"low"}
+  elseif($v -ge $high[0] -and $v -le $high[1]){"high"}
+  else {"mid"}
+}
+$bMoodLow=$rulesObj.buckets.mood.low; $bMoodHigh=$rulesObj.buckets.mood.high
+$bEnergyLow=$rulesObj.buckets.energy.low; $bEnergyHigh=$rulesObj.buckets.energy.high
+$bFocusLow=$rulesObj.buckets.focus.low; $bFocusHigh=$rulesObj.buckets.focus.high
+$moodBucket=Get-Bucket $Mood $bMoodLow $bMoodHigh
+$energyBucket=Get-Bucket $Energy $bEnergyLow $bEnergyHigh
+$focusBucket=Get-Bucket $Focus $bFocusLow $bFocusHigh
+
+# Quick tags
+$noteTag=$null; $tags=@{}
+if($Note){
+  $l=$Note.ToLower()
+  if($l -match 'anxious|anxiety|panic|overwhelm'){$noteTag='anxious';$tags.tag_anxious=1}
+  if($l -match 'peace|calm|tranquil|serene'){ if(-not $noteTag){$noteTag='peace'}; $tags.tag_peace=1 }
+  if($l -match 'gratitude|grateful|thank'){$tags.tag_gratitude=1}
+  if($l -match 'love|care|compassion'){$tags.tag_love=1}
+  if($l -match 'stress|stressed|tense'){$tags.tag_stress=1}
+}
+
+# Refined keyword mapping
+$noteTokens=Tokenize-Note $Note
+$chakraOrder=@("root","sacral","solar_plexus","heart","throat","third_eye","crown")
+$kwCounts=@{}
+if($chakraKw -and $noteTokens.Count -gt 0){
+  foreach($ck in $chakraOrder){
+    $kwCounts[$ck]=0
+    if($chakraKw.$ck.keywords){ foreach($kw in $chakraKw.$ck.keywords){ if($noteTokens -contains ($kw.ToLower())){ $kwCounts[$ck]++ } } }
+    if($chakraKw.$ck.somatic){
+      foreach($kw in $chakraKw.$ck.somatic){
+        $needle=$kw.ToLower()
+        foreach($tok in $noteTokens){
+          if($tok -eq $needle){ $kwCounts[$ck]++ }
+          elseif($needle.Length -ge 5 -and $tok.StartsWith($needle.Substring(0,5))){ $kwCounts[$ck]++ }
+        }
+      }
+    }
+  }
+}
+if($DebugKw){
+  Write-Host "`nDEBUG  Keywords" -ForegroundColor Yellow
+  Write-Host ("  chakra_keywords.json loaded: {0}" -f ([bool]$chakraKw))
+  Write-Host ("  tokens: {0}" -f ($noteTokens -join ", "))
+  foreach($k in $chakraOrder){ "{0,-12}: {1}" -f $k,$kwCounts[$k] | Write-Host }
+}
+
+# Rule resolution
+$rules=$rulesObj.rules; $selectedRule=$null
+if($noteTag -eq 'anxious'){ $selectedRule=($rules|Where-Object{ $_.id -eq 'anxious_any'})[0] }
+elseif($noteTag -eq 'peace'){ $selectedRule=($rules|Where-Object{ $_.id -eq 'peace_any'})[0] }
+if(-not $selectedRule){
+  $cand=$rules|Where-Object{ $_.when.mood -eq $moodBucket -and $_.when.energy -eq $energyBucket -and $_.when.focus -eq $focusBucket }
+  if($cand.Count -gt 0){ $selectedRule=$cand[0] }
+}
+if(-not $selectedRule){
+  $mTry=@($moodBucket); if($moodBucket -eq 'mid'){$mTry=@('low','high')}
+  $eTry=@($energyBucket); if($energyBucket -eq 'mid'){$eTry=@('low','high')}
+  $fTry=@($focusBucket); if($focusBucket -eq 'mid'){$fTry=@('low','high')}
+  foreach($m in $mTry){ foreach($e in $eTry){ foreach($f in $fTry){
+    $hit=$rules|Where-Object{ $_.when.mood -eq $m -and $_.when.energy -eq $e -and $_.when.focus -eq $f }
+    if($hit.Count -gt 0){ $selectedRule=$hit[0]; break }
+  } } }
+}
+if(-not $selectedRule){ foreach($rid in $rulesObj.order){ $r=($rules|Where-Object{ $_.id -eq $rid})[0]; if($r){ $selectedRule=$r; break } } }
+if(-not $selectedRule){ throw "No matching rule found. Check data\engine\rules.json." }
+$shift=$selectedRule.shift; $sample=$selectedRule.example
+
+# Chakra selection
+$chakraNodes=@(); $chakraScoresOut=@()
+if($Chakra){
+  if($UseWeights -and $chakWeights){
+    $nm=[double]$Mood/10; $ne=[double]$Energy/10; $nf=[double]$Focus/10
+    $feat=@{"mood"=$nm;"energy"=$ne;"focus"=$nf;"tag_anxious"=([int]$tags.tag_anxious);"tag_peace"=([int]$tags.tag_peace);"tag_gratitude"=([int]$tags.tag_gratitude);"tag_love"=([int]$tags.tag_love);"tag_stress"=([int]$tags.tag_stress)}
+    foreach($ck in $chakWeights.weights.PSObject.Properties.Name){
+      $w=$chakWeights.weights.$ck; $score=0.0
+      foreach($k in $chakWeights.features){
+        $fv=0.0; if($feat.ContainsKey($k)){$fv=[double]$feat[$k]}
+        $wv=0.0; if($w.PSObject.Properties.Name -contains $k){$wv=[double]$w.$k}
+        $score += ($fv*$wv)
+      }
+      $label=$chakWeights.labels.$ck; if(-not $label){$label=$ck}
+      $chakraScoresOut += [pscustomobject]@{ key=$ck; label=$label; score=[math]::Round($score,3) }
+    }
+
+    # Keyword bumps + disambiguation
+    if($chakraKw -and $noteTokens -and $chakraScoresOut.Count -gt 0){
+      $kwWeight=[double]$chakraKw.weights.keyword_hit
+      $rootMoney=[double]$chakraKw.weights.money_root_bonus
+      $thirdeyeCl=[double]$chakraKw.weights.clarity_thirdeye_bonus
+
+      $moneyList=@("rent","mortgage","bills","debt","income","money","cash","paycheck","job","security")
+      $clarList=@("clarity","vision","insight","intuition","confused","foggy","idea")
+      $moneyHits=($noteTokens|Where-Object{ $moneyList -contains $_ }).Count
+      $clarityHits=($noteTokens|Where-Object{ $clarList -contains $_ }).Count
+      if ($moneyHits -gt 0) {
+          $targets = $chakraScoresOut | Where-Object key -eq "root"
+          foreach ($t in $targets) { $t.score += ($rootMoney * $moneyHits) }
+      }
+      if ($clarityHits -gt 0) {
+          $targets = $chakraScoresOut | Where-Object key -eq "third_eye"
+          foreach ($t in $targets) { $t.score += ($thirdeyeCl * $clarityHits) }
+      }
+
+      foreach($c in $chakraScoresOut){ $k=$c.key; if($kwCounts.ContainsKey($k)){ $c.score += ($kwCounts[$k]*$kwWeight) } }
+
+      $physTerms=@(); $emoTerms=@()
+      if($chakraKw.disambiguation){
+        $physTerms=@($chakraKw.disambiguation.physical_arousal_terms|ForEach-Object{ $_.ToLower() })
+        $emoTerms=@($chakraKw.disambiguation.emotional_warmth_terms|ForEach-Object{ $_.ToLower() })
+      }
+      $physHits=($noteTokens|Where-Object{ $physTerms -contains $_ }).Count
+      $emoHits=($noteTokens|Where-Object{ $emoTerms  -contains $_ }).Count
+      if ($physHits -gt 0 -and $emoHits -eq 0 -and $chakraKw.weights.physical_overrides_heart) {
+          $sacralTargets = $chakraScoresOut | Where-Object key -eq "sacral"
+          foreach ($t in $sacralTargets) { $t.score += 0.6 }
+
+          $heartTargets = $chakraScoresOut | Where-Object key -eq "heart"
+          foreach ($t in $heartTargets) { $t.score -= 0.3 }
+      }
+    }
+
+    $chakraScoresOut = $chakraScoresOut | Sort-Object -Property score -Descending
+    $chakraNodes = ($chakraScoresOut | Select-Object -First 2).key
+  } elseif($chakCfgObj){
+    $names=$chakCfgObj.map.PSObject.Properties.Name
+    if($names -contains $shift){ $chakraNodes=@($chakCfgObj.map.$shift) }
+  }
+}
+
+# Practice selection
+$contentId=$null; $contentText=$sample
+if($contentPacks){
+  $pack=$contentPacks.$shift
+  if($pack){
+    $picked=$null
+    if($Chakra -and $chakraNodes.Count -gt 0 -and $pack.chakra){
+      foreach($n in $chakraNodes){
+        if($pack.chakra.PSObject.Properties.Name -contains $n){
+          $list=$pack.chakra.$n; if($list.Count -gt 0){ $picked = $list | Get-Random; break }
+        }
+      }
+    }
+    if(-not $picked -and $pack.general){ $picked=$pack.general | Get-Random }
+    if($picked){ $contentId=$picked.id; $contentText=$picked.text }
+  }
+}
+
+# Tree
+$treeNodes=@()
+if($Tree -and $treeCfgObj){
+  $names=$treeCfgObj.map.PSObject.Properties.Name
+  if($names -contains $shift){ $treeNodes=@($treeCfgObj.map.$shift) }
+}
+
+# Output
+$emoji=@{mood=$emojiMap.mood[$Mood];energy=$emojiMap.energy[$Energy];focus=$emojiMap.focus[$Focus]}
+Write-Host "`nAURAFLOW  Morning State-Shift Result"
+Write-Host ("-"*48)
+("{0,-14}: {1} {2}" -f "Mood",$Mood,$emoji.mood)   | Write-Host
+("{0,-14}: {1} {2}" -f "Energy",$Energy,$emoji.energy) | Write-Host
+("{0,-14}: {1} {2}" -f "Focus",$Focus,$emoji.focus)   | Write-Host
+if ($Note) { ("{0,-14}: {1}" -f "Note",$Note) | Write-Host }
+
+
+("{0,-14}: {1}" -f "Shift",$shift) | Write-Host
+
+# --- Normalize & fix letter-by-letter spacing ---
+# 1) Normalize ANY Unicode space separator to regular space
+#    (\p{Zs} catches NBSP, thin spaces, en spaces, etc.)
+$contentText = [regex]::Replace($contentText, '\p{Zs}', ' ')
+
+# 2) If the string looks like it's letter-by-letter spaced,
+#    remove single spaces that sit BETWEEN letters only.
+$pairCount = ([regex]::Matches($contentText, '(?<=\p{L})\s(?=\p{L})')).Count
+if ($pairCount -ge 10) {
+    $contentText = [regex]::Replace($contentText, '(?<=\p{L})\s(?=\p{L})', '')
+}
+
+# 3) Normal tidy
+$contentText = [regex]::Replace($contentText, '\s{2,}', ' ')         # collapse doubles
+$contentText = [regex]::Replace($contentText, '(hips)\s*softness', '$1 — softness')
+$contentText = [regex]::Replace($contentText, '([a-z])([A-Z])', '$1 $2')  # add space before Uppercase after lowercase
+$contentText = $contentText.Trim()
+
+("{0,-14}: {1}" -f "Practice", $contentText) | Write-Host
+
+
+
+
+
+if($Chakra -and ($chakraNodes.Count -gt 0 -or $chakraScoresOut.Count -gt 0)){
+  Write-Host ""
+  if($UseWeights -and $chakraScoresOut.Count -gt 0){
+    Write-Host "Support areas today (not a diagnosis):" -ForegroundColor Magenta
+    $display=$chakraScoresOut | Sort-Object { [array]::IndexOf(@("root","sacral","solar_plexus","heart","throat","third_eye","crown"), $_.key) }
+    foreach($c in $display){ Write-Host ("  - {0}: {1}" -f $c.label,[math]::Round($c.score,3)) }
+    Write-Host "Focus gently on:" -ForegroundColor Magenta
+  } else {
+    Write-Host "Support areas today:" -ForegroundColor Magenta
+  }
+  $orderedTop=@()
+  foreach($k in @("root","sacral","solar_plexus","heart","throat","third_eye","crown")){ if($chakraNodes -contains $k){ $orderedTop+=$k } }
+  foreach($n in $orderedTop){
+    $lab=$n
+    if($chakWeights -and $chakWeights.labels.$n){$lab=$chakWeights.labels.$n}
+    elseif($chakCfgObj -and $chakCfgObj.labels.$n){$lab=$chakCfgObj.labels.$n}
+    Write-Host ("  - {0} [{1}]" -f $lab,$n)
+  }
+}
+
+# Log
+New-Item -ItemType Directory -Force -Path (Resolve-RepoPath "logs")|Out-Null
+$stamp=Get-Date -Format "yyyy-MM-dd"
+$log=Resolve-RepoPath ("logs\engine-{0}.log" -f $stamp)
+([pscustomobject]@{ts=(Get-Date).ToString("o");mood=$Mood;energy=$Energy;focus=$Focus;note=$Note;shift=$shift;content_id=$contentId;after=$After;chakra=($chakraNodes -join ",");tree=($treeNodes -join ",");usedWeights=([bool]$UseWeights)}|ConvertTo-Json -Compress)|Add-Content -Path $log
+exit 0
+
+
+
+==== FILE: C:\auraflow\user_bias.json ====
+
+{
+
+}
+
