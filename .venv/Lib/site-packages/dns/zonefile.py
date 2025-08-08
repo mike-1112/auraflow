@@ -17,23 +17,22 @@
 
 """DNS Zones."""
 
-from typing import Any, Iterable, List, Optional, Set, Tuple, Union
-
 import re
 import sys
+from typing import Any, Iterable, List, Optional, Set, Tuple, Union
 
 import dns.exception
+import dns.grange
 import dns.name
 import dns.node
+import dns.rdata
 import dns.rdataclass
 import dns.rdatatype
-import dns.rdata
 import dns.rdtypes.ANY.SOA
 import dns.rrset
 import dns.tokenizer
 import dns.transaction
 import dns.ttl
-import dns.grange
 
 
 class UnknownOrigin(dns.exception.DNSException):
@@ -87,7 +86,6 @@ def _upper_dollarize(s):
 
 
 class Reader:
-
     """Read a DNS zone file into a transaction."""
 
     def __init__(
@@ -191,10 +189,6 @@ class Reader:
                 self.last_ttl_known = True
                 token = None
             except dns.ttl.BadTTL:
-                if self.default_ttl_known:
-                    ttl = self.default_ttl
-                elif self.last_ttl_known:
-                    ttl = self.last_ttl
                 self.tok.unget(token)
 
         # Class
@@ -212,6 +206,22 @@ class Reader:
             if rdclass != self.zone_rdclass:
                 raise dns.exception.SyntaxError("RR class is not zone's class")
 
+        if ttl is None:
+            # support for <class> <ttl> <type> syntax
+            token = self._get_identifier()
+            ttl = None
+            try:
+                ttl = dns.ttl.from_text(token.value)
+                self.last_ttl = ttl
+                self.last_ttl_known = True
+                token = None
+            except dns.ttl.BadTTL:
+                if self.default_ttl_known:
+                    ttl = self.default_ttl
+                elif self.last_ttl_known:
+                    ttl = self.last_ttl
+                self.tok.unget(token)
+
         # Type
         if self.force_rdtype is not None:
             rdtype = self.force_rdtype
@@ -220,7 +230,7 @@ class Reader:
             try:
                 rdtype = dns.rdatatype.from_text(token.value)
             except Exception:
-                raise dns.exception.SyntaxError("unknown rdatatype '%s'" % token.value)
+                raise dns.exception.SyntaxError(f"unknown rdatatype '{token.value}'")
 
         try:
             rd = dns.rdata.from_text(
@@ -241,9 +251,7 @@ class Reader:
             # We convert them to syntax errors so that we can emit
             # helpful filename:line info.
             (ty, va) = sys.exc_info()[:2]
-            raise dns.exception.SyntaxError(
-                "caught exception {}: {}".format(str(ty), str(va))
-            )
+            raise dns.exception.SyntaxError(f"caught exception {str(ty)}: {str(va)}")
 
         if not self.default_ttl_known and rdtype == dns.rdatatype.SOA:
             # The pre-RFC2308 and pre-BIND9 behavior inherits the zone default
@@ -271,41 +279,41 @@ class Reader:
         # Sometimes there are modifiers in the hostname. These come after
         # the dollar sign. They are in the form: ${offset[,width[,base]]}.
         # Make names
+        mod = ""
+        sign = "+"
+        offset = "0"
+        width = "0"
+        base = "d"
         g1 = is_generate1.match(side)
         if g1:
             mod, sign, offset, width, base = g1.groups()
             if sign == "":
                 sign = "+"
-        g2 = is_generate2.match(side)
-        if g2:
-            mod, sign, offset = g2.groups()
-            if sign == "":
-                sign = "+"
-            width = 0
-            base = "d"
-        g3 = is_generate3.match(side)
-        if g3:
-            mod, sign, offset, width = g3.groups()
-            if sign == "":
-                sign = "+"
-            base = "d"
+        else:
+            g2 = is_generate2.match(side)
+            if g2:
+                mod, sign, offset = g2.groups()
+                if sign == "":
+                    sign = "+"
+                width = "0"
+                base = "d"
+            else:
+                g3 = is_generate3.match(side)
+                if g3:
+                    mod, sign, offset, width = g3.groups()
+                    if sign == "":
+                        sign = "+"
+                    base = "d"
 
-        if not (g1 or g2 or g3):
-            mod = ""
-            sign = "+"
-            offset = 0
-            width = 0
-            base = "d"
-
-        offset = int(offset)
-        width = int(width)
+        ioffset = int(offset)
+        iwidth = int(width)
 
         if sign not in ["+", "-"]:
-            raise dns.exception.SyntaxError("invalid offset sign %s" % sign)
+            raise dns.exception.SyntaxError(f"invalid offset sign {sign}")
         if base not in ["d", "o", "x", "X", "n", "N"]:
-            raise dns.exception.SyntaxError("invalid type %s" % base)
+            raise dns.exception.SyntaxError(f"invalid type {base}")
 
-        return mod, sign, offset, width, base
+        return mod, sign, ioffset, iwidth, base
 
     def _generate_line(self):
         # range lhs [ttl] [class] type rhs [ comment ]
@@ -367,7 +375,7 @@ class Reader:
             if not token.is_identifier():
                 raise dns.exception.SyntaxError
         except Exception:
-            raise dns.exception.SyntaxError("unknown rdatatype '%s'" % token.value)
+            raise dns.exception.SyntaxError(f"unknown rdatatype '{token.value}'")
 
         # rhs (required)
         rhs = token.value
@@ -402,8 +410,8 @@ class Reader:
             lzfindex = _format_index(lindex, lbase, lwidth)
             rzfindex = _format_index(rindex, rbase, rwidth)
 
-            name = lhs.replace("$%s" % (lmod), lzfindex)
-            rdata = rhs.replace("$%s" % (rmod), rzfindex)
+            name = lhs.replace(f"${lmod}", lzfindex)
+            rdata = rhs.replace(f"${rmod}", rzfindex)
 
             self.last_name = dns.name.from_text(
                 name, self.current_origin, self.tok.idna_codec
@@ -435,7 +443,7 @@ class Reader:
                 # helpful filename:line info.
                 (ty, va) = sys.exc_info()[:2]
                 raise dns.exception.SyntaxError(
-                    "caught exception %s: %s" % (str(ty), str(va))
+                    f"caught exception {str(ty)}: {str(va)}"
                 )
 
             self.txn.add(name, ttl, rd)
@@ -518,7 +526,7 @@ class Reader:
                                 self.default_ttl_known,
                             )
                         )
-                        self.current_file = open(filename, "r")
+                        self.current_file = open(filename)
                         self.tok = dns.tokenizer.Tokenizer(self.current_file, filename)
                         self.current_origin = new_origin
                     elif c == "$GENERATE":
@@ -581,7 +589,7 @@ class RRsetsReaderTransaction(dns.transaction.Transaction):
             pass
 
     def _name_exists(self, name):
-        for (n, _, _) in self.rdatasets:
+        for n, _, _ in self.rdatasets:
             if n == name:
                 return True
         return False
@@ -604,6 +612,9 @@ class RRsetsReaderTransaction(dns.transaction.Transaction):
         pass
 
     def _iterate_rdatasets(self):
+        raise NotImplementedError  # pragma: no cover
+
+    def _iterate_names(self):
         raise NotImplementedError  # pragma: no cover
 
 
@@ -707,26 +718,26 @@ def read_rrsets(
     if isinstance(default_ttl, str):
         default_ttl = dns.ttl.from_text(default_ttl)
     if rdclass is not None:
-        the_rdclass = dns.rdataclass.RdataClass.make(rdclass)
+        rdclass = dns.rdataclass.RdataClass.make(rdclass)
     else:
-        the_rdclass = None
-    the_default_rdclass = dns.rdataclass.RdataClass.make(default_rdclass)
+        rdclass = None
+    default_rdclass = dns.rdataclass.RdataClass.make(default_rdclass)
     if rdtype is not None:
-        the_rdtype = dns.rdatatype.RdataType.make(rdtype)
+        rdtype = dns.rdatatype.RdataType.make(rdtype)
     else:
-        the_rdtype = None
+        rdtype = None
     manager = RRSetsReaderManager(origin, relativize, default_rdclass)
     with manager.writer(True) as txn:
         tok = dns.tokenizer.Tokenizer(text, "<input>", idna_codec=idna_codec)
         reader = Reader(
             tok,
-            the_default_rdclass,
+            default_rdclass,
             txn,
             allow_directives=False,
             force_name=name,
             force_ttl=ttl,
-            force_rdclass=the_rdclass,
-            force_rdtype=the_rdtype,
+            force_rdclass=rdclass,
+            force_rdtype=rdtype,
             default_ttl=default_ttl,
         )
         reader.read()

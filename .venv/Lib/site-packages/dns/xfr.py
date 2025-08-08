@@ -21,9 +21,9 @@ import dns.exception
 import dns.message
 import dns.name
 import dns.rcode
-import dns.serial
 import dns.rdataset
 import dns.rdatatype
+import dns.serial
 import dns.transaction
 import dns.tsig
 import dns.zone
@@ -33,7 +33,7 @@ class TransferError(dns.exception.DNSException):
     """A zone transfer response got a non-zero rcode."""
 
     def __init__(self, rcode):
-        message = "Zone transfer error: %s" % dns.rcode.to_text(rcode)
+        message = f"Zone transfer error: {dns.rcode.to_text(rcode)}"
         super().__init__(message)
         self.rcode = rcode
 

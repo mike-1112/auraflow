@@ -17,10 +17,9 @@
 
 """Tokenize DNS zone file format"""
 
-from typing import Any, Optional, List, Tuple
-
 import io
 import sys
+from typing import Any, List, Optional, Tuple
 
 import dns.exception
 import dns.name
@@ -529,7 +528,7 @@ class Tokenizer:
         if value < 0 or value > 65535:
             if base == 8:
                 raise dns.exception.SyntaxError(
-                    "%o is not an octal unsigned 16-bit integer" % value
+                    f"{value:o} is not an octal unsigned 16-bit integer"
                 )
             else:
                 raise dns.exception.SyntaxError(

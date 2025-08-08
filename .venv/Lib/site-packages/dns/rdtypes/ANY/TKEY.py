@@ -18,14 +18,13 @@
 import base64
 import struct
 
-import dns.immutable
 import dns.exception
+import dns.immutable
 import dns.rdata
 
 
 @dns.immutable.immutable
 class TKEY(dns.rdata.Rdata):
-
     """TKEY Record"""
 
     __slots__ = [
@@ -70,7 +69,7 @@ class TKEY(dns.rdata.Rdata):
             dns.rdata._base64ify(self.key, 0),
         )
         if len(self.other) > 0:
-            text += " %s" % (dns.rdata._base64ify(self.other, 0))
+            text += f" {dns.rdata._base64ify(self.other, 0)}"
 
         return text
 

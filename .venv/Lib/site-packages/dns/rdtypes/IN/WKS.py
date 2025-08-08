@@ -18,8 +18,8 @@
 import socket
 import struct
 
-import dns.ipv4
 import dns.immutable
+import dns.ipv4
 import dns.rdata
 
 try:
@@ -33,7 +33,6 @@ except OSError:
 
 @dns.immutable.immutable
 class WKS(dns.rdata.Rdata):
-
     """WKS record"""
 
     # see: RFC 1035

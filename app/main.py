@@ -1,5 +1,5 @@
 ﻿from fastapi import FastAPI
-from app.routers import checkin, prompts, history, users
+from app.routers import checkin, prompts, history, users, diet, supplements, prefs
 from app.db import init_db
 
 app = FastAPI(title="AuraFlow API", version="0.1.0")
@@ -16,7 +16,10 @@ def root():
 def health():
     return {"status": "ok"}
 
-app.include_router(users.router, prefix="/users", tags=["Users"])
-app.include_router(checkin.router, prefix="/checkin", tags=["Check-in"])
-app.include_router(prompts.router, prefix="/prompts", tags=["Prompts"])
-app.include_router(history.router, prefix="/history", tags=["History"])
+app.include_router(users.router,        prefix="/users",        tags=["Users"])
+app.include_router(checkin.router,      prefix="/checkin",      tags=["Check-in"])
+app.include_router(diet.router,         prefix="/diet",         tags=["Diet"])
+app.include_router(supplements.router,  prefix="/supplements",  tags=["Supplements"])
+app.include_router(prefs.router,        prefix="/prefs",        tags=["Preferences"])
+app.include_router(prompts.router,      prefix="/prompts",      tags=["Prompts"])
+app.include_router(history.router,      prefix="/history",      tags=["History"])

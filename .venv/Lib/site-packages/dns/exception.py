@@ -81,7 +81,7 @@ class DNSException(Exception):
         if kwargs:
             assert (
                 set(kwargs.keys()) == self.supp_kwargs
-            ), "following set of keyword args is required: %s" % (self.supp_kwargs)
+            ), f"following set of keyword args is required: {self.supp_kwargs}"
         return kwargs
 
     def _fmt_kwargs(self, **kwargs):
@@ -138,6 +138,22 @@ class Timeout(DNSException):
     # idna_exception
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+
+
+class UnsupportedAlgorithm(DNSException):
+    """The DNSSEC algorithm is not supported."""
+
+
+class AlgorithmKeyMismatch(UnsupportedAlgorithm):
+    """The DNSSEC algorithm is not supported for the given key type."""
+
+
+class ValidationFailure(DNSException):
+    """The DNSSEC signature is invalid."""
+
+
+class DeniedByPolicy(DNSException):
+    """Denied by DNSSEC policy."""
 
 
 class ExceptionWrapper:

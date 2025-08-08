@@ -29,7 +29,6 @@ import dns.tokenizer
 
 @dns.immutable.immutable
 class APLItem:
-
     """An APL list item."""
 
     __slots__ = ["family", "negation", "address", "prefix"]
@@ -80,7 +79,6 @@ class APLItem:
 
 @dns.immutable.immutable
 class APL(dns.rdata.Rdata):
-
     """APL record."""
 
     # see: RFC 3123
@@ -124,7 +122,6 @@ class APL(dns.rdata.Rdata):
 
     @classmethod
     def from_wire_parser(cls, rdclass, rdtype, parser, origin=None):
-
         items = []
         while parser.remaining() > 0:
             header = parser.get_struct("!HBB")

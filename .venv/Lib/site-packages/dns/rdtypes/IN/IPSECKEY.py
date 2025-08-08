@@ -15,8 +15,8 @@
 # ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT
 # OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
-import struct
 import base64
+import struct
 
 import dns.exception
 import dns.immutable
@@ -29,7 +29,6 @@ class Gateway(dns.rdtypes.util.Gateway):
 
 @dns.immutable.immutable
 class IPSECKEY(dns.rdata.Rdata):
-
     """IPSECKEY record"""
 
     # see: RFC 4025

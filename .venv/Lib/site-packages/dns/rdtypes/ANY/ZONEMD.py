@@ -1,7 +1,7 @@
 # Copyright (C) Dnspython Contributors, see LICENSE for text of ISC license
 
-import struct
 import binascii
+import struct
 
 import dns.immutable
 import dns.rdata
@@ -11,7 +11,6 @@ import dns.zonetypes
 
 @dns.immutable.immutable
 class ZONEMD(dns.rdata.Rdata):
-
     """ZONEMD record"""
 
     # See RFC 8976
