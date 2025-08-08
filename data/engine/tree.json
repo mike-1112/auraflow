@@ -1,0 +1,20 @@
+﻿{
+  "map": {
+    "motivation": ["gevurah","keter"],
+    "love":       ["chesed","tiferet"],
+    "compassion": ["yesod","tiferet"],
+    "grounded":   ["malkuth","hod"]
+  },
+  "labels": {
+    "keter":"Keter (Crown / potential)",
+    "chokhmah":"Chokhmah",
+    "binah":"Binah",
+    "chesed":"Chesed (Kindness)",
+    "gevurah":"Gevurah (Discipline)",
+    "tiferet":"Tiferet (Balance)",
+    "netzach":"Netzach",
+    "hod":"Hod (Clarity)",
+    "yesod":"Yesod (Foundation)",
+    "malkuth":"Malkuth (Kingdom / physical)"
+  }
+}

@@ -1,0 +1,17 @@
+﻿{
+  "map": {
+    "motivation": ["solar_plexus","crown"],
+    "love":       ["heart","throat"],
+    "compassion": ["root","heart","sacral"],
+    "grounded":   ["root","third_eye"]
+  },
+  "labels": {
+    "root":"Root (Muladhara)",
+    "sacral":"Sacral (Svadhisthana)",
+    "solar_plexus":"Solar Plexus (Manipura)",
+    "heart":"Heart (Anahata)",
+    "throat":"Throat (Vishuddha)",
+    "third_eye":"Third Eye (Ajna)",
+    "crown":"Crown (Sahasrara)"
+  }
+}

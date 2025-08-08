@@ -1,10 +1,10 @@
-﻿from datetime import datetime, timedelta
+from datetime import datetime, timedelta
 from typing import Optional
 from jose import jwt, JWTError
 from passlib.context import CryptContext
 
 # JWT Config
-SECRET_KEY = "CHANGE_THIS_TO_A_RANDOM_SECRET"
+from app.config import SECRET_KEY
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24  # 1 day
 

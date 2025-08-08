@@ -1,0 +1,20 @@
+﻿{
+  "rules": [
+    { "id": "low_low_low",  "when": { "mood":"low", "energy":"low", "focus":"low"  }, "shift":"motivation", "example":"20s visualization of overcoming past challenges" },
+    { "id": "low_low_high", "when": { "mood":"low", "energy":"low", "focus":"high" }, "shift":"compassion", "example":"Gentle reframing before using focus" },
+    { "id": "low_high_low", "when": { "mood":"low", "energy":"high","focus":"low"  }, "shift":"grounded",   "example":"Breath + posture reset to channel energy" },
+    { "id": "low_high_high","when": { "mood":"low", "energy":"high","focus":"high" }, "shift":"motivation", "example":"Channel this fire into one thing that matters" },
+    { "id": "high_low_low","when": { "mood":"high","energy":"low","focus":"low"     }, "shift":"love",       "example":"Gratitude micro-practice" },
+    { "id": "high_low_high","when": { "mood":"high","energy":"low","focus":"high"   }, "shift":"grounded",   "example":"Centering + light prioritization" },
+    { "id": "high_high_low","when": { "mood":"high","energy":"high","focus":"low"   }, "shift":"love",       "example":"Share a positive message before work" },
+    { "id": "high_high_high","when": { "mood":"high","energy":"high","focus":"high" }, "shift":"motivation", "example":"Quick action plan + commitment anchor" },
+    { "id": "anxious_any",  "when": { "mood":"anxious","energy":"any","focus":"any" }, "shift":"compassion", "example":"1-minute guided breathing + safety cue" },
+    { "id": "peace_any",    "when": { "mood":"peace","energy":"any","focus":"any"   }, "shift":"grounded",   "example":"Light gratitude + act with intention" }
+  ],
+  "buckets": {
+    "mood":   { "low":[0,4], "high":[7,10], "anxious":"tag", "peace":"tag" },
+    "energy": { "low":[0,4], "high":[7,10] },
+    "focus":  { "low":[0,4], "high":[7,10] }
+  },
+  "order": ["anxious_any","peace_any","low_low_low","low_low_high","low_high_low","low_high_high","high_low_low","high_low_high","high_high_low","high_high_high"]
+}
