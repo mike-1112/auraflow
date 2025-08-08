@@ -19,6 +19,7 @@ $treeCfgPath=Resolve-RepoPath "data\engine\tree.json"
 $chakWeightPath=Resolve-RepoPath "data\engine\chakra_weights.json"
 $chakraKwPath=Resolve-RepoPath "data\engine\chakra_keywords.json"
 $contentPath=Resolve-RepoPath "data\engine\content_packs.json"
+$userBiasPath = Resolve-RepoPath "data\engine\user_bias.json"
 if(-not (Test-Path $rulesPath)){ throw "Missing $rulesPath" }
 
 # Load
@@ -28,6 +29,18 @@ $treeCfgObj= if(Test-Path $treeCfgPath){Get-Content -Raw $treeCfgPath|ConvertFro
 $chakWeights= if(Test-Path $chakWeightPath){Get-Content -Raw $chakWeightPath|ConvertFrom-Json} else {$null}
 $chakraKw= if(Test-Path $chakraKwPath){Get-Content -Raw $chakraKwPath|ConvertFrom-Json} else {$null}
 $contentPacks= if(Test-Path $contentPath){Get-Content -Raw $contentPath|ConvertFrom-Json} else {$null}
+
+$userBias = if (Test-Path $userBiasPath) {
+    Get-Content -Raw $userBiasPath | ConvertFrom-Json
+} else {
+    # default zero bias object
+    [pscustomobject]@{
+        chakra = [pscustomobject]@{
+            root=0.0; sacral=0.0; solar_plexus=0.0; heart=0.0; throat=0.0; third_eye=0.0; crown=0.0
+        }
+        last_update = ""
+    }
+}
 
 # Emojis
 $emojiMap=@{
@@ -218,12 +231,37 @@ if($Tree -and $treeCfgObj){
 $emoji=@{mood=$emojiMap.mood[$Mood];energy=$emojiMap.energy[$Energy];focus=$emojiMap.focus[$Focus]}
 Write-Host "`nAURAFLOW  Morning State-Shift Result"
 Write-Host ("-"*48)
-("{0,-14}: {1} {2}" -f "Mood",$Mood,$emoji.mood)|Write-Host
-("{0,-14}: {1} {2}" -f "Energy",$Energy,$emoji.energy)|Write-Host
-("{0,-14}: {1} {2}" -f "Focus",$Focus,$emoji.focus)|Write-Host
-if($Note){("{0,-14}: {1}" -f "Note",$Note)|Write-Host}
-("{0,-14}: {1}" -f "Shift",$shift)|Write-Host
-("{0,-14}: {1}" -f "Practice",$contentText)|Write-Host
+("{0,-14}: {1} {2}" -f "Mood",$Mood,$emoji.mood)   | Write-Host
+("{0,-14}: {1} {2}" -f "Energy",$Energy,$emoji.energy) | Write-Host
+("{0,-14}: {1} {2}" -f "Focus",$Focus,$emoji.focus)   | Write-Host
+if ($Note) { ("{0,-14}: {1}" -f "Note",$Note) | Write-Host }
+
+
+("{0,-14}: {1}" -f "Shift",$shift) | Write-Host
+
+# --- Normalize & fix letter-by-letter spacing ---
+# 1) Normalize ANY Unicode space separator to regular space
+#    (\p{Zs} catches NBSP, thin spaces, en spaces, etc.)
+$contentText = [regex]::Replace($contentText, '\p{Zs}', ' ')
+
+# 2) If the string looks like it's letter-by-letter spaced,
+#    remove single spaces that sit BETWEEN letters only.
+$pairCount = ([regex]::Matches($contentText, '(?<=\p{L})\s(?=\p{L})')).Count
+if ($pairCount -ge 10) {
+    $contentText = [regex]::Replace($contentText, '(?<=\p{L})\s(?=\p{L})', '')
+}
+
+# 3) Normal tidy
+$contentText = [regex]::Replace($contentText, '\s{2,}', ' ')         # collapse doubles
+$contentText = [regex]::Replace($contentText, '(hips)\s*softness', '$1 — softness')
+$contentText = [regex]::Replace($contentText, '([a-z])([A-Z])', '$1 $2')  # add space before Uppercase after lowercase
+$contentText = $contentText.Trim()
+
+("{0,-14}: {1}" -f "Practice", $contentText) | Write-Host
+
+
+
+
 
 if($Chakra -and ($chakraNodes.Count -gt 0 -or $chakraScoresOut.Count -gt 0)){
   Write-Host ""
